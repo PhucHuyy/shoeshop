@@ -232,3 +232,27 @@ export const headerMenu = [
     // subTrigger:
   },
 ];
+
+export const products = [
+  {
+    title:
+      "NIKE ZOOM MERCURIAL SUPERFLY 10 ACADEMY KM TF - FQ8333-800 - VÀNG/CAM",
+    href: "/shoe1.jpg",
+    price: 1500000,
+  },
+  {
+    title: "ADIDAS F50 LEAGUE TF - IF1335 - ĐỎ/CAM",
+    href: "/shoe2.jpg",
+    price: 1500000,
+  },
+  {
+    title: "PUMA FUTURE 7 PRO CAGE - 107923-01 - XANH DƯƠNG",
+    href: "/shoe3.jpg",
+    price: 1500000,
+  },
+  {
+    title: "MIZUNO ALPHA PRO AS - P1GD236409 - XÁM/TRẮNG",
+    href: "/shoe4.jpg",
+    price: 1500000,
+  },
+];

@@ -26,26 +26,28 @@ const data = [
 
 const Slider = () => {
   return (
-    <Carousel className="w-[88%] h-[550px]">
-      <CarouselContent className="">
-        {data.map((item, index) => (
-          <CarouselItem
-            key={index}
-            className="h-[550px] overflow-hidden flex items-center justify-center"
-          >
-            <div className=" w-full h-full">
-              <img
-                className="w-full h-full object-cover"
-                src={item.image}
-                alt={item.title}
-              />
-            </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
-    </Carousel>
+    <div className="w-full flex justify-center">
+      <Carousel className="w-[88%] h-[550px]">
+        <CarouselContent className="">
+          {data.map((item, index) => (
+            <CarouselItem
+              key={index}
+              className="h-[550px] overflow-hidden flex items-center justify-center"
+            >
+              <div className=" w-full h-full">
+                <img
+                  className="w-full h-full object-cover"
+                  src={item.image}
+                  alt={item.title}
+                />
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+    </div>
   );
 };
 
