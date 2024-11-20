@@ -2,6 +2,7 @@ import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/Home";
+import ShopPage from "./pages/Shop";
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<div>About</div>} />
+        <Route path="/collections/shop" element={<ShopPage />} />
         <Route path="/contact" element={<div>Contact</div>} />
       </Routes>
       <Footer />

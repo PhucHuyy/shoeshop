@@ -256,3 +256,10 @@ export const products = [
     price: 1500000,
   },
 ];
+
+export const breadcrumbs = {
+  all: {
+    title: "Tất cả sản phẩm",
+    path: "/collections/shop",
+  },
+};
