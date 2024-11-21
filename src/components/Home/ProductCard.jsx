@@ -1,11 +1,12 @@
 import { convertCurrency } from "@/lib/utils";
 import { ShoppingCart } from "lucide-react";
+import toast from "react-hot-toast";
 
 const ProductCard = ({ data }) => {
   const { title, href, price } = data;
 
   const addToCart = () => {
-    alert("Đã thêm vào giỏ cải");
+    toast.success("Đã thêm vào giỏ cải");
   };
 
   return (
@@ -16,9 +17,14 @@ const ProductCard = ({ data }) => {
       <div className="font-semibold cursor-pointer hover:text-red-400">
         {title}
       </div>
-      <div className="mt-auto">
+      <div className="mt-auto flex items-center justify-between">
         {convertCurrency(price)}
-        <ShoppingCart className="cursor-pointer" onClick={addToCart} />
+        <button
+          onClick={addToCart}
+          className="hover:text-red-400 active:text-red-600"
+        >
+          <ShoppingCart className="cursor-pointer" />
+        </button>
       </div>
     </div>
   );
