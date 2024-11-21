@@ -8,7 +8,10 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import HeaderMenuItem from "./header-menu-item";
+<<<<<<< HEAD
 import { useEffect } from "react";
+=======
+>>>>>>> 532e3bfa406d3cc530ec96462efcd05300b06e4e
 
 const data = {
   trigger: <User />,
