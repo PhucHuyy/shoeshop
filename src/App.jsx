@@ -1,11 +1,14 @@
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
 import { Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+
 import HomePage from "./pages/Home";
 import ShopPage from "./pages/Shop";
+import ShoppingCart from "./pages/ShoppingCart";
+
 import LoginForm from "./components/layout/login";
 import RegisterForm from "./components/layout/register";
-import ShoppingCart from "./pages/ShoppingCart";
 
 function App() {
   return (
@@ -20,6 +23,7 @@ function App() {
         <Route path="/contact" element={<div>Contact</div>} />
       </Routes>
       <Footer />
+      <Toaster />
     </div>
   );
 }

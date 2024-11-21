@@ -3,6 +3,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { User } from "lucide-react";
+import toast from "react-hot-toast";
 
 const HeaderMenuItem = ({ data }) => {
   const { trigger, hasSubMenu, href, subMenu } = data;
@@ -32,15 +34,22 @@ const HeaderMenuItem = ({ data }) => {
         side="bottom"
         className="bg-white border rounded-md w-[150px] p-1"
       >
-        {subMenu.map((item, index) => (
-          <div
-            key={index}
-            className="text-sm text-black font-semibold hover:bg-slate-100 hover:text-red-500 cursor-pointer h-[30px] rounded-sm flex items-center px-2"
-            onClick={() => {}}
-          >
-            {item.title}
-          </div>
-        ))}
+        {subMenu.map((item, index) => {
+          const Icon = item.icon;
+
+          return (
+            <button
+              key={index}
+              className="w-full justify-evenly text-sm text-black font-semibold hover:bg-slate-100 hover:text-red-500 cursor-pointer h-[30px] rounded-sm flex items-center px-2"
+              onClick={() => {
+                toast.success("Clicked");
+              }}
+            >
+              <p>{item.title}</p>
+              {item.icon && <Icon className="text-inherit" size={18} />}
+            </button>
+          );
+        })}
       </TooltipContent>
     </Tooltip>
   );
