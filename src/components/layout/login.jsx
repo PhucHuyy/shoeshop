@@ -1,11 +1,43 @@
+import { useShoeContext } from "@/context/ShoeContext";
+import axios from "axios";
 import React from "react";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
+  const { setToken } = useShoeContext();
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    try {
+      let res = await axios.post("http://localhost:8080/auth/login", {
+        email,
+        password,
+      });
+
+      const token = res.data.payload.token;
+      localStorage.setItem("token", token);
+      setToken(token);
+      // todo: set time expire token
+      toast.success("Đăng nhập thành công");
+      navigate("/");
+    } catch (error) {
+      toast.error("Đăng nhập thất bại");
+    }
+
+    // console.log("status", res.status);
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center mb-6">Đăng nhập</h2>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
             <label
               htmlFor="email"

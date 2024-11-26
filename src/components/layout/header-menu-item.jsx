@@ -3,10 +3,15 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useShoeContext } from "@/context/ShoeContext";
 import { User } from "lucide-react";
-import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
-const HeaderMenuItem = ({ data }) => {
+const HeaderMenuItem = ({ data, loggedIn }) => {
+  const { removeToken } = useShoeContext();
+
+  const navigate = useNavigate();
+
   const { trigger, hasSubMenu, href, subMenu } = data;
 
   if (!hasSubMenu) {
@@ -36,13 +41,21 @@ const HeaderMenuItem = ({ data }) => {
       >
         {subMenu.map((item, index) => {
           const Icon = item.icon;
+          const requiresAuth = item.requiresAuth;
+
+          if (requiresAuth != loggedIn) {
+            return;
+          }
 
           return (
             <button
               key={index}
               className="w-full justify-evenly text-sm text-black font-semibold hover:bg-slate-100 hover:text-red-500 cursor-pointer h-[30px] rounded-sm flex items-center px-2"
               onClick={() => {
-                toast.success("Clicked");
+                if (item.title === "Log out") {
+                  removeToken();
+                }
+                navigate(item.href);
               }}
             >
               <p>{item.title}</p>
