@@ -45,7 +45,7 @@ const ExperienceList = () => {
       </p>
       <br />
       <br />
-      <div className="flex justify-between items-center flex-wrap gap-4">
+      <div className=" grid grid-cols-6 gap-x-3">
         {features.map((feature, index) => (
           <ExperienceCard
             key={index}
@@ -63,3 +63,5 @@ const ExperienceList = () => {
 };
 
 export default ExperienceList;
+
+// flex justify-between items-center flex-wrap gap-4

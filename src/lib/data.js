@@ -13,7 +13,7 @@ export const headerMenu = [
   {
     trigger: "GIÀY CỎ NHÂN TẠO",
     hasSubMenu: true,
-    href: "/giay-co-nhan-tap",
+    href: "/collections/giay-co-nhan-tao",
     subMenu: [
       {
         title: "NIKE",
@@ -49,14 +49,14 @@ export const headerMenu = [
       },
       {
         title: "ZOCKER",
-        subHref: "/collections/nike-co-nhan-tao",
+        subHref: "/collections/zocker-co-nhan-tao",
       },
     ],
   },
   {
     trigger: "GIÀY FUTSAL",
     hasSubMenu: true,
-    href: "/giay-futsal",
+    href: "/collections/giay-futsal",
     subMenu: [
       {
         title: "NIKE",
@@ -71,11 +71,11 @@ export const headerMenu = [
         subHref: "/collections/joma-fulsal",
       },
       {
-        title: "mizuno",
+        title: "MIZUNO",
         subHref: "/collections/mizuno-fulsal",
       },
       {
-        title: "asics",
+        title: "ASICS",
         subHref: "/collections/asics-fulsal",
       },
       {
@@ -87,7 +87,7 @@ export const headerMenu = [
   {
     trigger: "THƯƠNG HIỆU",
     hasSubMenu: true,
-    href: "/thuong-hieu",
+    href: "#",
     subMenu: [
       {
         title: "NIKE",
@@ -95,19 +95,19 @@ export const headerMenu = [
       },
       {
         title: "ADIDAS",
-        subHref: "/collections/nike-thuong-hieu",
+        subHref: "/collections/adidas-thuong-hieu",
       },
       {
         title: "PUMA",
-        subHref: "/collections/nike-thuong-hieu",
+        subHref: "/collections/puma-thuong-hieu",
       },
       {
         title: "MIZUNO",
-        subHref: "/collections/nike-thuong-hieu",
+        subHref: "/collections/mizuno-thuong-hieu",
       },
       {
         title: "JOMA",
-        subHref: "/collections/nike-thuong-hieu",
+        subHref: "/collections/joma-thuong-hieu",
       },
       {
         title: "ATHLETA",
@@ -122,7 +122,7 @@ export const headerMenu = [
   {
     trigger: "HOT SALES",
     hasSubMenu: true,
-    href: "/hot-sales",
+    href: "/collections/hot-sales",
     subMenu: [
       {
         title: "NIKE",
@@ -153,136 +153,131 @@ export const headerMenu = [
   {
     trigger: "PHỤ KIỆN",
     hasSubMenu: true,
-    href: "/phu-kien",
+    href: "/collections/phu-kien",
     subMenu: [
       {
-        title: "NIKE",
-        subHref: "/collections/nike-phu-kien",
+        title: "BÓNG",
+        subHref: "/collections/bong-phu-kien",
       },
       {
-        title: "ADIDAS",
-        subHref: "/collections/nike-phu-kien",
+        title: "TẤT",
+        subHref: "/collections/tat-phu-kien",
       },
       {
-        title: "PUMA",
-        subHref: "/collections/nike-phu-kien",
+        title: "BALO",
+        subHref: "/collections/balo-phu-kien",
       },
       {
-        title: "MIZUNO",
-        subHref: "/collections/nike-phu-kien",
-      },
-      {
-        title: "JOMA",
-        subHref: "/collections/nike-phu-kien",
-      },
-      {
-        title: "ATHLETA",
-        subHref: "/collections/athleta-phu-kien",
-      },
-      {
-        title: "KAMITO",
-        subHref: "/collections/kamito-phu-kien",
+        title: "PHỤ KIỆN MIZUNO",
+        subHref: "/collections/mizuno-phu-kien",
       },
     ],
   },
-  {
-    trigger: "TIN TỨC GIÀY",
-    hasSubMenu: false,
-    href: "/",
-    // subTrigger:
-  },
-  {
-    trigger: "KHÁCH HÀNG",
-    hasSubMenu: false,
-    href: "/",
-    // subTrigger:
-  },
-  {
-    trigger: "CỬA HÀNG",
-    hasSubMenu: false,
-    href: "/",
-    // subTrigger:
-  },
-  {
-    trigger: "TUYỂN DỤNG",
-    hasSubMenu: true,
-    href: "/giay-co-nhan-tap",
-    subMenu: [
-      {
-        title: "NIKE",
-        subHref: "/collections/nike-co-nhan-tao",
-      },
-      {
-        title: "ADIDAS",
-        subHref: "/collections/nike-co-nhan-tao",
-      },
-      {
-        title: "NIKE",
-        subHref: "/collections/nike-co-nhan-tao",
-      },
-      {
-        title: "NIKE",
-        subHref: "/collections/nike-co-nhan-tao",
-      },
-      {
-        title: "NIKE",
-        subHref: "/collections/nike-co-nhan-tao",
-      },
-      {
-        title: "NIKE",
-        subHref: "/collections/nike-co-nhan-tao",
-      },
-    ],
-  },
-  {
-    trigger: "LIÊN HỆ",
-    hasSubMenu: false,
-    href: "/",
-    // subTrigger:
-  },
+  // {
+  //   trigger: "TIN TỨC GIÀY",
+  //   hasSubMenu: false,
+  //   href: "/",
+  //   // subTrigger:
+  // },
+  // {
+  //   trigger: "KHÁCH HÀNG",
+  //   hasSubMenu: false,
+  //   href: "/",
+  //   // subTrigger:
+  // },
+  // {
+  //   trigger: "CỬA HÀNG",
+  //   hasSubMenu: false,
+  //   href: "/",
+  //   // subTrigger:
+  // },
+  // {
+  //   trigger: "TUYỂN DỤNG",
+  //   hasSubMenu: true,
+  //   href: "/giay-co-nhan-tap",
+  //   subMenu: [
+  //     {
+  //       title: "NIKE",
+  //       subHref: "/collections/nike-co-nhan-tao",
+  //     },
+  //     {
+  //       title: "ADIDAS",
+  //       subHref: "/collections/nike-co-nhan-tao",
+  //     },
+  //     {
+  //       title: "NIKE",
+  //       subHref: "/collections/nike-co-nhan-tao",
+  //     },
+  //     {
+  //       title: "NIKE",
+  //       subHref: "/collections/nike-co-nhan-tao",
+  //     },
+  //     {
+  //       title: "NIKE",
+  //       subHref: "/collections/nike-co-nhan-tao",
+  //     },
+  //     {
+  //       title: "NIKE",
+  //       subHref: "/collections/nike-co-nhan-tao",
+  //     },
+  //   ],
+  // },
+  // {
+  //   trigger: "LIÊN HỆ",
+  //   hasSubMenu: false,
+  //   href: "/",
+  //   // subTrigger:
+  // },
 ];
 
 export const products = [
   {
-    title:
-      "NIKE ZOOM MERCURIAL SUPERFLY 10 ACADEMY KM TF - FQ8333-800 - XANH CHUỐI",
-    href: "/shoe1.jpg",
+    name: "NIKE ZOOM MERCURIAL SUPERFLY 10 ACADEMY KM TF - FQ8333-800 - XANH CHUỐI",
+    thumnail: "/shoe1.jpg",
     price: 1500000,
+    href: "/product/1",
   },
   {
-    title: "ADIDAS F50 LEAGUE TF - IF1335 - ĐỎ",
-    href: "/shoe2.jpg",
+    name: "ADIDAS F50 LEAGUE TF - IF1335 - ĐỎ",
+    thumnail: "/shoe2.jpg",
     price: 1500000,
+    href: "/product/2",
   },
   {
-    title: "ADIDAS PREDATOR 24 LEAGUE L TF - 107923-01 - XANH ĐEN",
-    href: "/shoe3.jpg",
+    name: "ADIDAS PREDATOR 24 LEAGUE L TF - 107923-01 - XANH ĐEN",
+    thumnail: "/shoe3.jpg",
     price: 1500000,
+    href: "/product/3",
   },
   {
-    title: "MIZUNO ALPHA PRO AS - P1GD236409 - XÁM/TRẮNG",
-    href: "/shoe4.jpg",
+    name: "MIZUNO ALPHA PRO AS - P1GD236409 - XÁM/TRẮNG",
+    thumnail: "/shoe4.jpg",
     price: 1500000,
+    href: "/product/4",
   },
   {
-    title: "MIZUNO ALPHA PRO AS - P1GD236409 - XÁM/TRẮNG",
-    href: "/shoe4.jpg",
+    name: "MIZUNO ALPHA PRO AS - P1GD236409 - XÁM/TRẮNG",
+    thumnail: "/shoe4.jpg",
     price: 1500000,
+    href: "/product/5",
   },
   {
-    title: "MIZUNO ALPHA PRO AS - P1GD236409 - XÁM/TRẮNG",
-    href: "/shoe4.jpg",
+    name: "MIZUNO ALPHA PRO AS - P1GD236409 - XÁM/TRẮNG",
+    thumnail: "/shoe4.jpg",
     price: 1500000,
+    href: "/product/6",
   },
   {
-    title: "MIZUNO ALPHA PRO AS - P1GD236409 - XÁM/TRẮNG",
-    href: "/shoe4.jpg",
+    name: "MIZUNO ALPHA PRO AS - P1GD236409 - XÁM/TRẮNG",
+    thumnail: "/shoe4.jpg",
     price: 1500000,
+    href: "/product/7",
   },
   {
-    title: "MIZUNO ALPHA PRO AS - P1GD236409 - XÁM/TRẮNG",
-    href: "/shoe4.jpg",
+    name: "MIZUNO ALPHA PRO AS - P1GD236409 - XÁM/TRẮNG",
+    thumnail: "/shoe4.jpg",
     price: 1500000,
+    href: "/product/8",
   },
 ];
 
@@ -290,5 +285,21 @@ export const breadcrumbs = {
   all: {
     title: "Tất cả sản phẩm",
     path: "/collections/shop",
+  },
+  shoetf: {
+    title: "Giày cỏ nhân tạo",
+    path: "/collections/giay-co-nhan-tao",
+  },
+  shoeic: {
+    title: "Giày Futsal",
+    path: "/collections/giay-futsal",
+  },
+  accessory: {
+    title: "Phụ kiện",
+    path: "/collections/phu-kien",
+  },
+  hotsales: {
+    title: "Hot Sales",
+    path: "/collections/hotsales",
   },
 };
