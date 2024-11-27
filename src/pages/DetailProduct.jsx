@@ -1,4 +1,5 @@
 import TabDemo from "@/components/layout/detail-product-tab";
+import Preferential from "@/components/layout/preferential";
 import { useParams } from "react-router-dom";
 
 const DetailProduct = () => {
@@ -6,7 +7,11 @@ const DetailProduct = () => {
 
   return (
     <div className="space-y-10">
-      <div>This is detail product</div>
+      <div className="grid grid-cols-2 px-5">
+        <div className="col-span-2">This is detail product</div>
+        <div></div>
+        <Preferential />
+      </div>
       <TabDemo />
     </div>
   );
