@@ -303,3 +303,49 @@ export const breadcrumbs = {
     path: "/collections/hotsales",
   },
 };
+
+export const productData = [
+  {
+    id: "1",
+    name: "NIKE ZOOM MERCURIAL SUPERFLY 10 ACADEMY KM TF - FQ8333-800 - XANH CHUỐI",
+    category: "Giày Cỏ Nhân Tạo (Turf)",
+    price: 1500000,
+    originalPrice: 2400000,
+    discount: 900000,
+    images: "/shoe1.jpg",
+    sizes: ["39 1/3", "40", "40 2/3", "41 1/3", "42", "42 2/3", "44", "44 2/3"],
+  },
+
+  {
+    id: "2",
+    name: "NIKE ZOOM MERCURIAL SUPERFLY 10 ACADEMY KM TF - FQ8333-800 - XANH CHUỐI",
+    category: "Giày Cỏ Nhân Tạo (Turf)",
+    price: 1500000,
+    originalPrice: 2400000,
+    discount: 900000,
+    images: "/shoe1.jpg",
+    sizes: ["39 1/3", "40", "40 2/3", "41 1/3", "42", "42 2/3", "44", "44 2/3"],
+  },
+
+  {
+    id: "3",
+    name: "NIKE ZOOM MERCURIAL SUPERFLY 10 ACADEMY KM TF - FQ8333-800 - XANH CHUỐI",
+    category: "Giày Cỏ Nhân Tạo (Turf)",
+    price: 1500000,
+    originalPrice: 2400000,
+    discount: 900000,
+    images: "/shoe1.jpg",
+    sizes: ["39 1/3", "40", "40 2/3", "41 1/3", "42", "42 2/3", "44", "44 2/3"],
+  },
+
+  {
+    id: "4",
+    name: "NIKE ZOOM MERCURIAL SUPERFLY 10 ACADEMY KM TF - FQ8333-800 - XANH CHUỐI",
+    category: "Giày Cỏ Nhân Tạo (Turf)",
+    price: 1500000,
+    originalPrice: 2400000,
+    discount: 900000,
+    images: "/shoe1.jpg",
+    sizes: ["39 1/3", "40", "40 2/3", "41 1/3", "42", "42 2/3", "44", "44 2/3"],
+  },
+];
