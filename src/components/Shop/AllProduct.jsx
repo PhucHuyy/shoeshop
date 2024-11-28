@@ -15,7 +15,6 @@ const AllProduct = () => {
 
         const prod = res.data.payload.products;
         setProducts(prod);
-        console.log(prod);
       } catch {
         setProducts([]);
         toast.error("Lỗi khi lấy dữ liệu sản phẩm");
