@@ -17,7 +17,7 @@ import toast from "react-hot-toast";
 const data = {
   trigger: <User />,
   hasSubMenu: true,
-  href: "/account/login",
+  href: "#",
   subMenu: [
     {
       title: "Profile",
