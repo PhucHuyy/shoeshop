@@ -12,6 +12,7 @@ import HeaderMenuItem from "./header-menu-item";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useShoeContext } from "@/context/ShoeContext";
+import toast from "react-hot-toast";
 
 const data = {
   trigger: <User />,
@@ -84,7 +85,8 @@ const HeaderActions = () => {
         size={24}
         strokeWidth={1.5}
         className="cursor-pointer"
-        onClick={"/"}
+        // onClick={"/"}
+        onClick={() => toast.error("Chưa làm chức năng này, quay lại sau")}
       />
       <HeaderMenuItem data={data} loggedIn={token != ""} />
       {/* <User

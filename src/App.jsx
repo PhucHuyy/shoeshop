@@ -8,6 +8,7 @@ import ShoeTF from "./pages/ShoeTF";
 import ShoeIC from "./pages/ShoeIC";
 import Accessory from "./pages/Accessory";
 import HotSales from "./pages/HotSales";
+import Profile from "./pages/Profile";
 
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
@@ -31,7 +32,7 @@ function App() {
           <Route path="/collections/phu-kien" element={<Accessory />} />
           <Route path="/collections/hot-sales" element={<HotSales />} />
           <Route path="/product/:productId" element={<DetailProduct />} />
-          <Route path="/contact" element={<div>Contact</div>} />
+          <Route path="/account/profile" element={<Profile />} />
         </Routes>
       </div>
       <Footer />
