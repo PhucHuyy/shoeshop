@@ -1,58 +1,75 @@
-import React from "react";
+import CartItem from "@/components/ShoppingCart/cart-item";
+import axios from "axios";
+import { LoaderCircle } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const ShoppingCart = () => {
+  const navigate = useNavigate();
+
+  const [productData, setProductData] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get("http://localhost:8080/cart", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+
+        setProductData(res.data);
+        console.log(res.data);
+      } catch {
+        toast.error("Lỗi khi lấy dữ liệu sản phẩm");
+      }
+    };
+    fetchData();
+  }, []);
+
+  if (!productData) {
+    return (
+      <div className="flex w-full items-center justify-center mt-[250px] text-gray-400">
+        <LoaderCircle size={128} strokeWidth={2} className="animate-spin" />
+      </div>
+    );
+  }
+
+  // const totalUnitPrice = productData
+  //   .map((item) => item.unit_price * item.quantity)
+  //   .reduce((a, b) => a + b, 0);
+
+  // console.log(totalUnitPrice);
+
+  const totalPrice = productData
+    .map((item) => item.total_rice)
+    .reduce((a, b) => a + b, 0);
+
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <div className="bg-white p-4 rounded shadow">
         {/* Tiêu đề */}
-        <div className="grid grid-cols-4 text-center font-bold border-b pb-4 mb-4">
+        <div className="grid grid-cols-5 text-center font-bold border-b pb-4 mb-4">
           <h2>Sản phẩm</h2>
           <h2>Đơn giá</h2>
           <h2>Số lượng</h2>
           <h2>Thành tiền</h2>
+          <h2>Huỷ sản phẩm</h2>
         </div>
 
         {/* Sản phẩm */}
-        <div className="grid grid-cols-4 items-center text-center border-b py-4">
-          {/* Sản phẩm chi tiết */}
-          <div className="flex items-center gap-4">
-            <img
-              src="https://via.placeholder.com/100"
-              alt="Sản phẩm"
-              className="w-20 h-20 object-cover"
-            />
-            <div className="text-left">
-              <h3 className="text-sm font-medium">
-                Nike Zoom Mercurial Superfly 10 Academy TF
-              </h3>
-              <p className="text-gray-500 text-sm">Mã SP: FQ8331-700</p>
-              <p className="text-gray-500 text-sm">Nhóm: 38.5</p>
-            </div>
-          </div>
 
-          {/* Đơn giá */}
-          <p className="text-sm font-medium">2,250,000₫</p>
-
-          {/* Số lượng */}
-          <div className="flex items-center justify-center gap-2">
-            <button className="p-2 border rounded">-</button>
-            <input
-              type="text"
-              value="1"
-              readOnly
-              className="w-12 text-center border rounded"
-            />
-            <button className="p-2 border rounded">+</button>
-          </div>
-
-          {/* Thành tiền */}
-          <p className="text-sm font-medium">2,250,000₫</p>
-        </div>
+        {productData.map((item, index) => (
+          <CartItem key={index} item={item} />
+        ))}
 
         {/* Tổng cộng */}
         <div className="flex justify-between items-center mt-4">
           <p className="text-lg font-bold">Thành tiền</p>
-          <p className="text-lg font-bold text-red-600">2,250,000₫</p>
+          <p className="text-lg font-bold text-red-600">
+            {totalPrice.toLocaleString()} đ
+          </p>
         </div>
 
         {/* Nút thanh toán */}
@@ -65,7 +82,12 @@ const ShoppingCart = () => {
 
       {/* Nút tiếp tục mua sắm */}
       <div className="mt-4">
-        <button className="text-sm text-blue-600">&lt; Tiếp tục mua sắm</button>
+        <button
+          className="text-sm text-blue-600"
+          onClick={() => navigate("/collections/shop")}
+        >
+          &lt; Tiếp tục mua sắm
+        </button>
       </div>
     </div>
   );
