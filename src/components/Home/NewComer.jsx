@@ -25,6 +25,10 @@ const NewComer = () => {
   if (products.length === 0) {
     return (
       <div className="flex-1 flex items-center justify-center flex-col">
+        <p className="text-center text-3xl font-normal">MỚI RA MẮT</p>
+        <p className="text-center font-normal">___________________</p>
+        <br />
+        <br />
         <img
           src="/empty-product.png"
           alt="No Product"
