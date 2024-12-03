@@ -10,8 +10,11 @@ import {
   SidebarGroupLabel,
 } from "../ui/sidebar";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const DetailInfoUser = () => {
+  const navigate = useNavigate();
+
   return (
     <Collapsible defaultOpen className="group/collapsible">
       <SidebarGroup>
@@ -30,19 +33,19 @@ const DetailInfoUser = () => {
         <div className="space-y-3 pl-[45px]">
           <div
             className="cursor-pointer"
-            onClick={() => toast.success("Hello")}
+            onClick={() => navigate("/account/profile")}
           >
             <CollapsibleContent>Hồ sơ</CollapsibleContent>
           </div>
           <div
             className="cursor-pointer"
-            onClick={() => toast.success("Hello")}
+            onClick={() => navigate("/account/address")}
           >
             <CollapsibleContent>Địa chỉ</CollapsibleContent>
           </div>
           <div
             className="cursor-pointer"
-            onClick={() => toast.success("Hello")}
+            onClick={() => navigate("/account/changing-password")}
           >
             <CollapsibleContent>Đổi mật khẩu</CollapsibleContent>
           </div>

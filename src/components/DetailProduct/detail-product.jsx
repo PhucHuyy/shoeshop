@@ -1,14 +1,81 @@
-import DetailProduct from "@/pages/DetailProduct";
-import React from "react";
-import { useParams } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
+import { Button } from "../ui/button";
+import toast from "react-hot-toast";
 
 const DetailProductInfo = ({ productData }) => {
+  const allSize = [...productData.sizes].sort((a, b) => {
+    return a.size - b.size;
+  });
+
+  const [loading, setLoading] = useState(false);
+
+  const [product, setProduct] = useState({
+    product_id: productData.id,
+    size: allSize[0].size,
+    quantity: 1,
+  });
+
+  const handleDecrease = () => {
+    setProduct((prev) => ({
+      ...prev,
+      quantity: Math.max(prev.quantity - 1, 1), // Đảm bảo không nhỏ hơn 1
+    }));
+  };
+
+  const handleIncrease = () => {
+    setProduct((prev) => ({
+      ...prev,
+      quantity: prev.quantity + 1,
+    }));
+  };
+
+  const handleSize = (size) => {
+    setProduct((prev) => ({
+      ...prev,
+      size,
+    }));
+  };
+
+  const handleSubmit = async () => {
+    try {
+      console.log(product);
+
+      setLoading(true);
+      await axios.post(
+        "http://localhost:8080/cart",
+        {
+          ...product,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      toast.success("Thêm vào giỏ hàng thành công");
+      setProduct({
+        product_id: productData.id,
+        size: allSize[0].size,
+        quantity: 1,
+      });
+    } catch (error) {
+      console.log(error);
+
+      toast.error("Xảy ra lỗi, thử lại!!!");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // console.log("http://localhost:8080/images" + productData.thumbnail);
+
   return (
     <div className="flex gap-14 p-6 w-[70%] items-center justify-between">
       {/* Hiển thị hình ảnh chính */}
       <div className="w-[407px] h-[407px] ">
         <img
-          src={productData.thumbnail} // Lấy hình ảnh từ trường `image`
+          src={"http://localhost:8080/images/" + productData.thumbnail} // Lấy hình ảnh từ trường `image`
           alt={productData.name}
           className="w-full h-full object-cover  border border-gray-300"
         />
@@ -22,7 +89,7 @@ const DetailProductInfo = ({ productData }) => {
         </p>
         <div className="mt-4">
           <span className="text-red-500 text-2xl font-bold">
-            {productData.price.toLocaleString()}₫
+            {productData.price.toLocaleString()}
           </span>
           {/* <span className="line-through text-gray-500 ml-4">
             {productData.originalPrice.toLocaleString()}₫
@@ -46,12 +113,17 @@ const DetailProductInfo = ({ productData }) => {
           <div className="grid grid-cols-4 gap-4 mt-2">
             {productData.sizes.length === 0
               ? "Đéo có size"
-              : productData.sizes.map((size, index) => (
+              : allSize.map((item) => (
                   <button
-                    key={index}
-                    className="px-4 py-2 border border-gray-300 hover:border-red-500 rounded-xl"
+                    key={item.id}
+                    className={`px-4 py-2 border ${
+                      item.size === product.size
+                        ? "border-red-300"
+                        : "border-gray-300"
+                    } hover:border-red-300 rounded-xl `}
+                    onClick={() => handleSize(item.size)}
                   >
-                    {size}
+                    {item.size}
                   </button>
                 ))}
           </div>
@@ -60,12 +132,27 @@ const DetailProductInfo = ({ productData }) => {
         {/* Chọn số lượng */}
         <div className="flex justify-between items-center mt-6">
           <p className="font-semibold mr-4">Số lượng:</p>
-          <button className="px-4 py-2 border border-gray-300">-</button>
-          <span className="px-4 py-2">1</span>
-          <button className="px-4 py-2 border border-gray-300">+</button>
-          <button className="bg-red-500 text-white px-6 py-3 rounded">
-            Thêm vào giỏ
+          <button
+            className="px-4 py-2 border border-gray-300"
+            onClick={handleDecrease}
+          >
+            -
           </button>
+          <span className="px-4 py-2">{product.quantity}</span>
+          <button
+            className="px-4 py-2 border border-gray-300"
+            onClick={handleIncrease}
+          >
+            +
+          </button>
+          <Button
+            variant="custom"
+            size="custom"
+            onClick={handleSubmit}
+            disabled={loading}
+          >
+            Thêm vào giỏ
+          </Button>
         </div>
 
         {/* Nút hành động */}

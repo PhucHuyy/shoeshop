@@ -14,6 +14,7 @@ const AllProduct = () => {
         );
 
         const prod = res.data.payload.products;
+
         setProducts(prod);
       } catch {
         setProducts([]);
