@@ -1,28 +1,3 @@
-// import DetailProductInfo from "@/components/layout/detail-product";
-// import TabDemo from "@/components/layout/detail-product-tab";
-// import Preferential from "@/components/layout/preferential";
-// import { productData } from "@/lib/data";
-// import { useParams } from "react-router-dom";
-
-// const DetailProduct = () => {
-//   const { productId } = useParams();
-
-//   return (
-//     <div className="space-y-10">
-//       <div className="grid grid-cols-2 px-5">
-//         <div>
-//           <DetailProductInfo productData={productData} />
-//         </div>
-//         <div></div>
-//         <Preferential />
-//       </div>
-//       <TabDemo />
-//     </div>
-//   );
-// };
-
-// export default DetailProduct;
-
 import DetailProductInfo from "@/components/DetailProduct/detail-product";
 import TabDemo from "@/components/DetailProduct/detail-product-tab";
 import Preferential from "@/components/DetailProduct/preferential";

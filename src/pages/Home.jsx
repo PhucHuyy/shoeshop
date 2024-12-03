@@ -7,9 +7,9 @@ const HomePage = () => {
   return (
     <div className="flex flex-col gap-5 bg-red-50">
       <Slider />
-      <NewComer></NewComer>
-      <Note></Note>
-      <ExperienceList></ExperienceList>
+      <NewComer />
+      <Note />
+      <ExperienceList />
     </div>
   );
 };
