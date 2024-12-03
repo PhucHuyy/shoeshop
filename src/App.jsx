@@ -15,12 +15,16 @@ import Header from "@/components/layout/header";
 import LoginForm from "./components/layout/login";
 import RegisterForm from "./components/layout/register";
 import DetailProduct from "./pages/DetailProduct";
+import Address from "./pages/Address";
+import ChangingPass from "./pages/ChangingPass";
+import ScrollToTop from "./components/scroll-to-top";
 
 function App() {
   return (
     <div className="min-w-[100vw] min-h-[100vh] bg-slate-100">
       <div className="min-h-[100vh]">
         <Header />
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/account/login" element={<LoginForm />}></Route>
@@ -33,6 +37,8 @@ function App() {
           <Route path="/collections/hot-sales" element={<HotSales />} />
           <Route path="/product/:productId" element={<DetailProduct />} />
           <Route path="/account/profile" element={<Profile />} />
+          <Route path="/account/address" element={<Address />} />
+          <Route path="/account/changing-password" element={<ChangingPass />} />
         </Routes>
       </div>
       <Footer />
