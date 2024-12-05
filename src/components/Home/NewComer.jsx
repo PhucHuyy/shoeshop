@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 
 const NewComer = () => {
   const [products, setProducts] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {

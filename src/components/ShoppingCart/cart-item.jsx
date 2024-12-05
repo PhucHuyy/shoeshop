@@ -69,7 +69,10 @@ const CartItem = (props) => {
     <div className="grid grid-cols-5 items-center text-center border-b py-4">
       <div className="flex items-center gap-5">
         <img
-          src="https://via.placeholder.com/100"
+          src={
+            `http://localhost:8080/products/images/` +
+            productData.product_id.thumbnail
+          }
           alt="Sản phẩm"
           className="w-20 h-20 object-cover"
         />

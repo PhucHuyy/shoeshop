@@ -4,9 +4,9 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ data }) => {
-  const { name, thumnail, price, id } = data;
+  const { name, thumbnail, price, id } = data;
   // console.log(data);
-  console.log(thumnail);
+  console.log(thumbnail);
 
   const navigate = useNavigate();
 
@@ -16,7 +16,11 @@ const ProductCard = ({ data }) => {
       onClick={() => navigate("/product/" + id)}
     >
       <div className="aspect-square">
-        <img src={thumnail} alt={name} className="w-full h-full object-cover" />
+        <img
+          src={`http://localhost:8080/products/images/` + thumbnail}
+          alt={name}
+          className="w-full h-full object-cover"
+        />
       </div>
       <div className="font-semibold cursor-pointer hover:text-red-400">
         {name}
