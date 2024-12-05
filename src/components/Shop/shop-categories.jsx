@@ -4,7 +4,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "../ui/collapsible";
-import CategoryItem from "./CategoryItem";
+import CategoryItem from "./category-item";
 
 const data = [
   {
