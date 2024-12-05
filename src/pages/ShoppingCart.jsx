@@ -88,7 +88,10 @@ const ShoppingCart = () => {
 
         {/* Nút thanh toán */}
         <div className="mt-6 text-right">
-          <button className="px-6 py-2 bg-black text-white rounded">
+          <button
+            className="px-6 py-2 bg-black text-white rounded"
+            onClick={() => navigate("/checkouts")}
+          >
             Thanh toán
           </button>
         </div>

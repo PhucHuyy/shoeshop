@@ -18,6 +18,7 @@ import DetailProduct from "./pages/DetailProduct";
 import Address from "./pages/Address";
 import ChangingPass from "./pages/ChangingPass";
 import ScrollToTop from "./components/scroll-to-top";
+import CheckOut from "./pages/CheckOut";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/account/profile" element={<Profile />} />
           <Route path="/account/address" element={<Address />} />
           <Route path="/account/changing-password" element={<ChangingPass />} />
+          <Route path="/checkouts" element={<CheckOut />} />
         </Routes>
       </div>
       <Footer />
