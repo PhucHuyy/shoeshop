@@ -4,7 +4,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useShoeContext } from "@/context/ShoeContext";
-import { User } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const HeaderMenuItem = ({ data, loggedIn }) => {

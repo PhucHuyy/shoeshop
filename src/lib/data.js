@@ -125,28 +125,12 @@ export const headerMenu = [
     href: "/collections/hot-sales",
     subMenu: [
       {
-        title: "NIKE",
-        subHref: "/collections/nike-co-nhan-tao",
+        title: "GIÀY NHÂN TẠO",
+        subHref: "/collections/hot-sales",
       },
       {
-        title: "ADIDAS",
-        subHref: "/collections/nike-co-nhan-tao",
-      },
-      {
-        title: "NIKE",
-        subHref: "/collections/nike-co-nhan-tao",
-      },
-      {
-        title: "NIKE",
-        subHref: "/collections/nike-co-nhan-tao",
-      },
-      {
-        title: "NIKE",
-        subHref: "/collections/nike-co-nhan-tao",
-      },
-      {
-        title: "NIKE",
-        subHref: "/collections/nike-co-nhan-tao",
+        title: "GIÀY FUTSAL",
+        subHref: "/collections/hot-sales",
       },
     ],
   },
