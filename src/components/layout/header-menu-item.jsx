@@ -30,7 +30,9 @@ const HeaderMenuItem = ({ data, loggedIn }) => {
       <TooltipTrigger asChild>
         <a
           href={href}
-          className="cursor-pointer text-black hover:text-red-500 text-sm font-bold border border-transparent rounded-lg hover:border-red-300 hover:bg-red-50 py-1 px-2"
+          className={`cursor-pointer text-black hover:text-red-500 text-sm font-bold border border-transparent rounded-lg hover:border-red-300 hover:bg-red-50 py-1 px-2 ${
+            trigger === "HOT SALES" ? " animate-flame animate-flicker" : ""
+          }`}
         >
           {trigger}
         </a>
