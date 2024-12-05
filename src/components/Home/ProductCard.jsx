@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 const ProductCard = ({ data }) => {
   const { name, thumbnail, price, id } = data;
   // console.log(data);
-  console.log(thumbnail);
 
   const navigate = useNavigate();
 
