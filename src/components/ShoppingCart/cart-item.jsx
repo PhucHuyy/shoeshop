@@ -1,7 +1,16 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useNavigate, useParams } from "react-router-dom";
 
 const CartItem = (props) => {
   const productData = props.item;
+  const onDelete = props.onDelete;
+  // console.log(productData.id);
+
+  const [product, setProduct] = useState(productData);
+
+  const navigate = useNavigate();
 
   return (
     <div className="grid grid-cols-5 items-center text-center border-b py-4">
@@ -21,21 +30,25 @@ const CartItem = (props) => {
       <p className="text-sm font-medium">{productData.unit_price}</p>
 
       <div className="flex items-center justify-center gap-2">
-        <button className="p-2 border rounded">-</button>
+        <button className="p-2 border rounded" onClick={() => {}}>
+          -
+        </button>
         <input
           type="text"
           value={productData.quantity}
           readOnly
           className="w-12 text-center border rounded"
         />
-        <button className="p-2 border rounded">+</button>
+        <button className="p-2 border rounded" onClick={() => {}}>
+          +
+        </button>
       </div>
 
       <p className="text-sm font-medium">{productData.total_rice}</p>
 
       <button
         className="text-red-500 font-bold"
-        onClick={() => toast.error("Đã Xoá")}
+        onClick={() => onDelete(productData.id)}
       >
         X
       </button>

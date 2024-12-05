@@ -10,21 +10,22 @@ const ShoppingCart = () => {
 
   const [productData, setProductData] = useState();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get("http://localhost:8080/cart", {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+  const fetchData = async () => {
+    try {
+      const res = await axios.get("http://localhost:8080/cart", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
 
-        setProductData(res.data);
-        console.log(res.data);
-      } catch {
-        toast.error("Lỗi khi lấy dữ liệu sản phẩm");
-      }
-    };
+      setProductData(res.data);
+      // console.log(res.data);
+    } catch {
+      toast.error("Lỗi khi lấy dữ liệu sản phẩm");
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -36,11 +37,24 @@ const ShoppingCart = () => {
     );
   }
 
-  // const totalUnitPrice = productData
-  //   .map((item) => item.unit_price * item.quantity)
-  //   .reduce((a, b) => a + b, 0);
-
-  // console.log(totalUnitPrice);
+  const deleteCartItem = async (cartItemId) => {
+    try {
+      await axios.delete(
+        `http://localhost:8080/cart?cartItemId=${cartItemId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      // setProduct((prevItems) => {
+      //   prevItems.filter((productData) => productData.id !== cartItemId);
+      // });
+      await fetchData();
+    } catch {
+      toast.error("Lỗi khi xóa sản phẩm");
+    }
+  };
 
   const totalPrice = productData
     .map((item) => item.total_rice)
@@ -61,7 +75,7 @@ const ShoppingCart = () => {
         {/* Sản phẩm */}
 
         {productData.map((item, index) => (
-          <CartItem key={index} item={item} />
+          <CartItem key={index} item={item} onDelete={deleteCartItem} />
         ))}
 
         {/* Tổng cộng */}
