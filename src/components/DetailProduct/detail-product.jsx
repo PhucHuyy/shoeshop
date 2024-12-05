@@ -39,8 +39,6 @@ const DetailProductInfo = ({ productData }) => {
 
   const handleSubmit = async () => {
     try {
-      console.log(product);
-
       setLoading(true);
       await axios.post(
         "http://localhost:8080/cart",
@@ -75,7 +73,7 @@ const DetailProductInfo = ({ productData }) => {
       {/* Hiển thị hình ảnh chính */}
       <div className="w-[407px] h-[407px] ">
         <img
-          src={"http://localhost:8080/images/" + productData.thumbnail} // Lấy hình ảnh từ trường `image`
+          src={"http://localhost:8080/products/images/" + productData.thumbnail} // Lấy hình ảnh từ trường `image`
           alt={productData.name}
           className="w-full h-full object-cover  border border-gray-300"
         />

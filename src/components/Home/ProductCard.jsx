@@ -6,12 +6,9 @@ import { useNavigate } from "react-router-dom";
 const ProductCard = ({ data }) => {
   const { name, thumnail, price, id } = data;
   // console.log(data);
+  console.log(thumnail);
 
   const navigate = useNavigate();
-
-  const addToCart = () => {
-    toast.success("Đã thêm vào giỏ cải");
-  };
 
   return (
     <div

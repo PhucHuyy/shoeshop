@@ -10,7 +10,7 @@ import React from "react";
 
 const data = [
   {
-    title: "CÓ TẠI 1 CỬA HÀNG",
+    title: "THAM KHẢO SẢN PHẨM TẠI: ",
     desc: "69 VŨ TÔNG PHAN, KHƯƠNG TRUNG, THANH XUÂN, HÀ NỘI",
     icon: <Store strokeWidth={1} />,
     subIcon: <MapPin strokeWidth={1} />,
