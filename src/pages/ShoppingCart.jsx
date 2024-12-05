@@ -1,14 +1,16 @@
 import CartItem from "@/components/ShoppingCart/cart-item";
+import { convertCurrency } from "@/lib/utils";
 import axios from "axios";
 import { LoaderCircle } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const ShoppingCart = () => {
   const navigate = useNavigate();
 
-  const [productData, setProductData] = useState();
+  const [productData, setProductData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     try {
@@ -19,23 +21,16 @@ const ShoppingCart = () => {
       });
 
       setProductData(res.data);
-      // console.log(res.data);
+      setLoading(false);
     } catch {
       toast.error("Lỗi khi lấy dữ liệu sản phẩm");
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchData();
   }, []);
-
-  if (!productData) {
-    return (
-      <div className="flex w-full items-center justify-center mt-[250px] text-gray-400">
-        <LoaderCircle size={128} strokeWidth={2} className="animate-spin" />
-      </div>
-    );
-  }
 
   const deleteCartItem = async (cartItemId) => {
     try {
@@ -47,18 +42,28 @@ const ShoppingCart = () => {
           },
         }
       );
-      // setProduct((prevItems) => {
-      //   prevItems.filter((productData) => productData.id !== cartItemId);
-      // });
-      await fetchData();
+      await fetchData(); // Cập nhật lại giỏ hàng sau khi xóa
     } catch {
       toast.error("Lỗi khi xóa sản phẩm");
     }
   };
 
+  // Tính tổng tiền giỏ hàng
   const totalPrice = productData
     .map((item) => item.total_rice)
     .reduce((a, b) => a + b, 0);
+
+  // Kiểm tra nếu giỏ hàng trống
+  const isCartEmpty = productData.length === 0;
+
+  // Nếu đang tải dữ liệu, hiển thị loader
+  if (loading) {
+    return (
+      <div className="flex w-full items-center justify-center mt-[250px] text-gray-400">
+        <LoaderCircle size={128} strokeWidth={2} className="animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
@@ -72,25 +77,40 @@ const ShoppingCart = () => {
           <h2>Huỷ sản phẩm</h2>
         </div>
 
-        {/* Sản phẩm */}
-
-        {productData.map((item, index) => (
-          <CartItem key={index} item={item} onDelete={deleteCartItem} />
-        ))}
+        {/* Sản phẩm trong giỏ */}
+        {productData.length > 0 ? (
+          productData.map((item, index) => (
+            <CartItem
+              key={index}
+              item={item}
+              onDelete={deleteCartItem}
+              fetchData={fetchData}
+            />
+          ))
+        ) : (
+          <div className="text-center text-gray-400 mt-4">
+            Giỏ hàng của bạn đang trống!
+          </div>
+        )}
 
         {/* Tổng cộng */}
         <div className="flex justify-between items-center mt-4">
           <p className="text-lg font-bold">Thành tiền</p>
           <p className="text-lg font-bold text-red-600">
-            {totalPrice.toLocaleString()} đ
+            {convertCurrency(totalPrice)}
           </p>
         </div>
 
         {/* Nút thanh toán */}
         <div className="mt-6 text-right">
           <button
-            className="px-6 py-2 bg-black text-white rounded"
-            onClick={() => navigate("/checkouts")}
+            className={`px-6 py-2 rounded ${
+              isCartEmpty
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-black text-white"
+            }`}
+            onClick={() => !isCartEmpty && navigate("/checkouts")}
+            disabled={isCartEmpty} // Disable khi giỏ hàng trống
           >
             Thanh toán
           </button>
