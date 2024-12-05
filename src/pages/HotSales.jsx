@@ -1,6 +1,6 @@
 import BreadCrumb from "@/components/Breadcrumb";
-import AllProduct from "@/components/Shop/AllProduct";
-import ShopCategories from "@/components/Shop/ShopCategories";
+import AllProduct from "@/components/Shop/all-product";
+import ShopCategories from "@/components/Shop/shop-categories";
 
 const HotSales = () => {
   return (
