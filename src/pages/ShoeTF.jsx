@@ -1,6 +1,7 @@
 import BreadCrumb from "@/components/Breadcrumb";
-import AllProduct from "@/components/Shop/AllProduct";
-import ShopCategories from "@/components/Shop/ShopCategories";
+import ShoeTFProduct from "@/components/ShoeTF/shoe-tf-product";
+import AllProduct from "@/components/Shop/all-product";
+import ShopCategories from "@/components/Shop/shop-categories";
 
 const ShoeTF = () => {
   return (
@@ -10,7 +11,7 @@ const ShoeTF = () => {
         <ShopCategories />
         <div className="flex flex-col flex-1 space-y-4">
           <p>this is shop page</p>
-          <AllProduct />
+          <ShoeTFProduct />
         </div>
       </div>
     </div>

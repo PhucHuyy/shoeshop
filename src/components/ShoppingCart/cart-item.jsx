@@ -22,7 +22,9 @@ const CartItem = (props) => {
         />
         <div className="text-left">
           <h3 className="text-sm font-medium">{productData.product_name}</h3>
-          <p className="text-gray-500 text-sm">Mã SP: FQ8331-700</p>
+          <p className="text-gray-500 text-sm">
+            Mã SP: {productData.product_id.id}
+          </p>
           <p className="text-gray-500 text-sm">Size: {productData.size}</p>
         </div>
       </div>
