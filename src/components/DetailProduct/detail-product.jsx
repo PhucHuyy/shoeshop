@@ -20,25 +20,10 @@ const DetailProductInfo = ({ productData }) => {
     quantity: 1,
   });
 
-  const [productCheckout, setProductCheckout] = useState([
-    {
-      size: allSize[0].size,
-      quantity: 1,
-      name: productData.name,
-      price: productData.price,
-      imageUrl: productData.product_images[0].imageUrl,
-    },
-  ]);
-
   const handleDecrease = () => {
     setProduct((prev) => ({
       ...prev,
       quantity: Math.max(prev.quantity - 1, 1), // Đảm bảo không nhỏ hơn 1
-    }));
-
-    setProductCheckout((prev) => ({
-      ...prev,
-      quantity: Math.max(prev.quantity - 1, 1),
     }));
   };
 
@@ -47,20 +32,10 @@ const DetailProductInfo = ({ productData }) => {
       ...prev,
       quantity: prev.quantity + 1,
     }));
-
-    setProductCheckout((prev) => ({
-      ...prev,
-      quantity: prev.quantity + 1,
-    }));
   };
 
   const handleSize = (size) => {
     setProduct((prev) => ({
-      ...prev,
-      size,
-    }));
-
-    setProductCheckout((prev) => ({
       ...prev,
       size,
     }));
@@ -98,7 +73,15 @@ const DetailProductInfo = ({ productData }) => {
   const { startCheckout } = useShoeContext();
 
   const handleCheckout = () => {
-    startCheckout(productCheckout);
+    startCheckout([
+      {
+        size: product.size,
+        quantity: product.quantity,
+        name: productData.name,
+        price: productData.price,
+        imageUrl: productData.product_images[0].imageUrl,
+      },
+    ]);
     navigate("/checkouts");
   };
 

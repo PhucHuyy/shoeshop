@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const TabDemo = () => {
+const TabDemo = ({ description }) => {
   return (
     <div className="flex items-center justify-center min-w-[80%]">
       <Tabs
@@ -18,8 +18,10 @@ const TabDemo = () => {
             LỜI KHUYÊN MUA GIÀY
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="description" className="min-h-[500px]">
-          <div>This is description</div>
+        <TabsContent value="description" className="min-h-[100px]">
+          <div className="px-[75px] py-5 space-y-5 text-sm font-semibold">
+            {description}
+          </div>
         </TabsContent>
         <TabsContent value="warranty" className="min-h-[500px] ">
           <div className="px-[75px] py-5 space-y-5 text-sm font-semibold">
