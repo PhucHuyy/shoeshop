@@ -46,25 +46,26 @@ const InfomationCustomer = () => {
           ></textarea>
         </div>
         <div className="grid grid-cols-2 gap-2 mt-2">
-          <select className="w-full p-2 border border-gray-300 rounded-md">
-            <option>Quốc gia</option>
-            <option>Vietnam</option>
-          </select>
-          <select className="w-full p-2 border border-gray-300 rounded-md">
-            <option>Tỉnh / thành</option>
-            <option>Hà Nội</option>
-            <option>TP. Hồ Chí Minh</option>
-          </select>
-          <select className="w-full p-2 border border-gray-300 rounded-md">
-            <option>Quận / huyện</option>
-            <option>Quận 1</option>
-            <option>Quận 2</option>
-          </select>
-          <select className="w-full p-2 border border-gray-300 rounded-md">
-            <option>Phường / xã</option>
-            <option>Phường 1</option>
-            <option>Phường 2</option>
-          </select>
+          <input
+            type="text"
+            placeholder="Quốc gia"
+            className="w-full p-2 border border-gray-300 rounded-md"
+          />
+          <input
+            type="text"
+            placeholder="Tỉnh / thành"
+            className="w-full p-2 border border-gray-300 rounded-md"
+          />
+          <input
+            type="text"
+            placeholder="Quận / huyện"
+            className="w-full p-2 border border-gray-300 rounded-md"
+          />
+          <input
+            type="text"
+            placeholder="Phường / xã"
+            className="w-full p-2 border border-gray-300 rounded-md"
+          />
         </div>
       </div>
 
