@@ -1,60 +1,59 @@
-import { useState } from "react";
+import { useShoeContext } from "@/context/ShoeContext";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const InformationProduct = () => {
   const [discountCode, setDiscountCode] = useState("");
-  const [total, setTotal] = useState(13750000); // Tổng cộng ban đầu
+  const navigate = useNavigate();
+  // const [total, setTotal] = useState(13750000); // Tổng cộng ban đầu
 
-  const products = [
-    {
-      id: 1,
-      name: "NIKE PHANTOM GX 2 PRO TF - FJ2583-003 - XÁM/XANH CHUỐI",
-      price: 2750000,
-      quantity: 1,
-      imageUrl: "path_to_image_1", // Đường dẫn hình ảnh sản phẩm
-    },
-    {
-      id: 2,
-      name: "NIKE ZOOM MERCURIAL VAPOR 16 PRO TF - FQ8687-400 - XANH LƠ",
-      price: 2750000,
-      quantity: 1,
-      imageUrl: "path_to_image_2",
-    },
-    {
-      id: 3,
-      name: "NIKE ZOOM MERCURIAL VAPOR 16 PRO TF - FQ8687-400 - XANH LƠ",
-      price: 8250000,
-      quantity: 1,
-      imageUrl: "path_to_image_3",
-    },
-  ];
+  const { checkoutProduct } = useShoeContext();
+  console.log(checkoutProduct);
+
+  const total = checkoutProduct.reduce((acc, item) => {
+    return acc + item.price * item.quantity;
+  }, 0);
+
+  useEffect(() => {
+    // Nếu không có sản phẩm trong checkoutProduct, chuyển về trang trước
+    if (checkoutProduct.length === 0) {
+      navigate(-1); // Quay lại trang trước đó
+    }
+  }, [checkoutProduct, navigate]);
 
   const handleDiscountChange = (e) => {
     setDiscountCode(e.target.value);
   };
 
-  const applyDiscount = () => {
-    // Giả sử mã giảm giá giảm 10%
-    if (discountCode === "DISCOUNT10") {
-      setTotal(total * 0.9); // Giảm 10%
-    }
-  };
+  // const applyDiscount = () => {
+  //   // Giả sử mã giảm giá giảm 10%
+  //   if (discountCode === "DISCOUNT10") {
+  //     setTotal(total * 0.9); // Giảm 10%
+  //   }
+  // };
 
   return (
     <div className="p-6 max-w-4xl mx-auto bg-white border border-gray-300 rounded-lg shadow-lg">
       <div className="space-y-4">
-        {products.map((product) => (
-          <div key={product.id} className="flex items-center space-x-4">
+        {checkoutProduct.map((item) => (
+          <div key={item.id} className="flex items-center space-x-4">
             <img
-              src={product.imageUrl}
-              alt={product.name}
+              src={`http://localhost:8080/products/images/${item.imageUrl}`}
+              alt={item.name}
               className="w-16 h-16 object-cover"
             />
             <div className="flex-1">
-              <p className="text-sm font-medium">{product.name}</p>
+              <p className="text-sm font-medium">{item.name}</p>
               <p className="text-sm text-gray-600">
-                {product.quantity} x {product.price.toLocaleString()}₫
+                {item.quantity} x {item.price.toLocaleString()}₫
               </p>
+              <div className="text-sm text-gray-600">Size: {item.size}</div>
+            </div>
+            <div className="flex">
+              <div className="text-sm text-gray-600">
+                {(item.quantity * item.price).toLocaleString()}₫
+              </div>
             </div>
           </div>
         ))}

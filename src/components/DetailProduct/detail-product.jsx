@@ -2,24 +2,42 @@ import axios from "axios";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import toast from "react-hot-toast";
+import { useShoeContext } from "@/context/ShoeContext";
+import { useNavigate } from "react-router-dom";
 
 const DetailProductInfo = ({ productData }) => {
+  const navigate = useNavigate();
+
   const allSize = [...productData.sizes].sort((a, b) => {
     return a.size - b.size;
   });
 
   const [loading, setLoading] = useState(false);
 
+  console.log(productData);
   const [product, setProduct] = useState({
     product_id: productData.id,
     size: allSize[0].size,
     quantity: 1,
   });
 
+  const [productCheckout, setProductCheckout] = useState({
+    size: allSize[0].size,
+    quantity: 1,
+    name: productData.name,
+    price: productData.price,
+    imageUrl: productData.product_images[0].imageUrl,
+  });
+
   const handleDecrease = () => {
     setProduct((prev) => ({
       ...prev,
       quantity: Math.max(prev.quantity - 1, 1), // Đảm bảo không nhỏ hơn 1
+    }));
+
+    setProductCheckout((prev) => ({
+      ...prev,
+      quantity: Math.max(prev.quantity - 1, 1),
     }));
   };
 
@@ -28,10 +46,20 @@ const DetailProductInfo = ({ productData }) => {
       ...prev,
       quantity: prev.quantity + 1,
     }));
+
+    setProductCheckout((prev) => ({
+      ...prev,
+      quantity: prev.quantity + 1,
+    }));
   };
 
   const handleSize = (size) => {
     setProduct((prev) => ({
+      ...prev,
+      size,
+    }));
+
+    setProductCheckout((prev) => ({
       ...prev,
       size,
     }));
@@ -66,7 +94,14 @@ const DetailProductInfo = ({ productData }) => {
     }
   };
 
-  // console.log("http://localhost:8080/images" + productData.thumbnail);
+  console.log(productCheckout);
+
+  const { startCheckout } = useShoeContext();
+
+  const handleCheckout = () => {
+    startCheckout(productCheckout);
+    navigate("/checkouts");
+  };
 
   return (
     <div className="flex gap-14 p-6 w-[70%] items-center justify-between">
@@ -155,7 +190,10 @@ const DetailProductInfo = ({ productData }) => {
 
         {/* Nút hành động */}
         <div className="flex gap-4 mt-6">
-          <button className="bg-black w-full text-white px-6 py-3 rounded">
+          <button
+            className="bg-black w-full text-white px-6 py-3 rounded"
+            onClick={handleCheckout}
+          >
             Mua ngay
           </button>
         </div>
