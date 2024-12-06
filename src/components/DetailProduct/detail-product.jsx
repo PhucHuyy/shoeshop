@@ -14,20 +14,21 @@ const DetailProductInfo = ({ productData }) => {
 
   const [loading, setLoading] = useState(false);
 
-  console.log(productData);
   const [product, setProduct] = useState({
     product_id: productData.id,
     size: allSize[0].size,
     quantity: 1,
   });
 
-  const [productCheckout, setProductCheckout] = useState({
-    size: allSize[0].size,
-    quantity: 1,
-    name: productData.name,
-    price: productData.price,
-    imageUrl: productData.product_images[0].imageUrl,
-  });
+  const [productCheckout, setProductCheckout] = useState([
+    {
+      size: allSize[0].size,
+      quantity: 1,
+      name: productData.name,
+      price: productData.price,
+      imageUrl: productData.product_images[0].imageUrl,
+    },
+  ]);
 
   const handleDecrease = () => {
     setProduct((prev) => ({
@@ -93,8 +94,6 @@ const DetailProductInfo = ({ productData }) => {
       setLoading(false);
     }
   };
-
-  console.log(productCheckout);
 
   const { startCheckout } = useShoeContext();
 

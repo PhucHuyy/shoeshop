@@ -9,7 +9,6 @@ const InformationProduct = () => {
   // const [total, setTotal] = useState(13750000); // Tổng cộng ban đầu
 
   const { checkoutProduct } = useShoeContext();
-  console.log(checkoutProduct);
 
   const total = checkoutProduct.reduce((acc, item) => {
     return acc + item.price * item.quantity;
@@ -36,8 +35,8 @@ const InformationProduct = () => {
   return (
     <div className="p-6 max-w-4xl mx-auto bg-white border border-gray-300 rounded-lg shadow-lg">
       <div className="space-y-4">
-        {checkoutProduct.map((item) => (
-          <div key={item.id} className="flex items-center space-x-4">
+        {checkoutProduct.map((item, index) => (
+          <div key={index} className="flex items-center space-x-4">
             <img
               src={`http://localhost:8080/products/images/${item.imageUrl}`}
               alt={item.name}

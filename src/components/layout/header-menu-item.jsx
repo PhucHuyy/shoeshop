@@ -4,7 +4,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useShoeContext } from "@/context/ShoeContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const HeaderMenuItem = ({ data, loggedIn }) => {
   const { removeToken } = useShoeContext();
@@ -15,26 +15,26 @@ const HeaderMenuItem = ({ data, loggedIn }) => {
 
   if (!hasSubMenu) {
     return (
-      <a
-        href={href}
+      <Link
+        to={href}
         className="cursor-pointer text-black hover:text-red-500 text-sm font-bold border border-transparent rounded-lg hover:border-red-300 hover:bg-red-50 py-1 px-2"
       >
         {trigger}
-      </a>
+      </Link>
     );
   }
 
   return (
     <Tooltip delayDuration={0}>
       <TooltipTrigger asChild>
-        <a
-          href={href}
+        <Link
+          to={href}
           className={`cursor-pointer text-black hover:text-red-500 text-sm font-bold border border-transparent rounded-lg hover:border-red-300 hover:bg-red-50 py-1 px-2 ${
             trigger === "HOT SALES" ? " animate-flame animate-flicker" : ""
           }`}
         >
           {trigger}
-        </a>
+        </Link>
       </TooltipTrigger>
       <TooltipContent
         side="bottom"
