@@ -7,7 +7,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 const CartItem = (props) => {
   const productData = props.item;
   const onDelete = props.onDelete;
-  console.log(productData);
 
   const navigate = useNavigate();
   const location = useLocation();

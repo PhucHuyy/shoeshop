@@ -1,4 +1,5 @@
 import CartItem from "@/components/ShoppingCart/cart-item";
+import { useShoeContext } from "@/context/ShoeContext";
 import { convertCurrency } from "@/lib/utils";
 import axios from "axios";
 import { LoaderCircle } from "lucide-react";
@@ -47,6 +48,29 @@ const ShoppingCart = () => {
       toast.error("Lỗi khi xóa sản phẩm");
     }
   };
+
+  const { startCheckout } = useShoeContext();
+
+  const handleCheckout = () => {
+    const productList = productData.map((item) => ({
+      name: item.product_id.name,
+      size: item.size,
+      quantity: item.quantity,
+      price: item.product_id.price,
+      imageUrl: item.thumbnail,
+    }));
+
+    startCheckout(productList);
+    navigate("/checkouts");
+  };
+
+  // const [productCheckout, setProductCheckout] = useState({
+  //   size: allSize[0].size,
+  //   quantity: 1,
+  //   name: productData.name,
+  //   price: productData.price,
+  //   imageUrl: productData.product_images[0].imageUrl,
+  // });
 
   // Tính tổng tiền giỏ hàng
   const totalPrice = productData
@@ -109,7 +133,7 @@ const ShoppingCart = () => {
                 ? "bg-gray-400 cursor-not-allowed"
                 : "bg-black text-white"
             }`}
-            onClick={() => !isCartEmpty && navigate("/checkouts")}
+            onClick={handleCheckout}
             disabled={isCartEmpty} // Disable khi giỏ hàng trống
           >
             Thanh toán
