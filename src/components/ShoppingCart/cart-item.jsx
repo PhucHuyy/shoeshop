@@ -2,14 +2,11 @@ import { convertCurrency } from "@/lib/utils";
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useLocation, useNavigate } from "react-router-dom";
 
 const CartItem = (props) => {
   const productData = props.item;
   const onDelete = props.onDelete;
 
-  const navigate = useNavigate();
-  const location = useLocation();
   const [loading, setLoading] = useState(false);
 
   const handleIncrease = async () => {
@@ -89,7 +86,11 @@ const CartItem = (props) => {
       </p>
 
       <div className="flex items-center justify-center gap-2">
-        <button className="p-2 border rounded" onClick={handleDecrease}>
+        <button
+          className="p-2 border rounded"
+          onClick={handleDecrease}
+          disabled={loading}
+        >
           -
         </button>
         <input
@@ -98,7 +99,11 @@ const CartItem = (props) => {
           readOnly
           className="w-12 text-center border rounded"
         />
-        <button className="p-2 border rounded" onClick={handleIncrease}>
+        <button
+          className="p-2 border rounded"
+          onClick={handleIncrease}
+          disabled={loading}
+        >
           +
         </button>
       </div>
@@ -110,6 +115,7 @@ const CartItem = (props) => {
       <button
         className="text-red-500 font-bold"
         onClick={() => onDelete(productData.id)}
+        disabled={loading}
       >
         X
       </button>

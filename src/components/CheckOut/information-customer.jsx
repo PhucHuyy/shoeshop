@@ -1,89 +1,146 @@
-import { User } from "lucide-react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/form";
+import { useForm } from "react-hook-form";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+
+const schema = z.object({
+  name: z.string().min(1, { message: "Họ và tên không được để trống" }),
+  phone: z.string().min(10, { message: "Số điện thoại không hợp lệ" }),
+  address: z.string().min(1, { message: "Địa chỉ không được để trống" }),
+  province: z
+    .string()
+    .min(1, { message: "Tỉnh / Thành Phố không được để trống" }),
+  distinct: z.string().min(1, { message: "Huyện / Quận không được để trống" }),
+  vilage: z.string().min(1, { message: "Xã / Phường không được để trống" }),
+});
 
 const InfomationCustomer = () => {
   const navigate = useNavigate();
+  const form = useForm({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      name: "",
+      phone: "",
+      address: "",
+      province: "",
+      distinct: "",
+      vilage: "",
+    },
+  });
 
+  const onSubmit = (data) => {
+    console.log(data);
+    toast.success("Đặt hàng thành công");
+    // navigate("/shoppingcart");
+  };
   return (
-    <div className="p-4 max-w-5xl w-[600px] mx-auto bg-white border border-gray-300 rounded-md">
-      <div className="text-2xl font-semibold">GIÀY BÓNG ĐÁ CHÍNH HÃNG</div>
-      <div className="mb-4">
-        <label
-          htmlFor="postal-code"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Thêm địa chỉ mới...
-        </label>
-        <input
-          type="text"
-          id="postal-code"
-          value="70000, Vietnam"
-          readOnly
-          className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+    <Form {...form}>
+      <form className="space-y-5" onSubmit={form.handleSubmit(onSubmit)}>
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Họ và tên</FormLabel>
+              <FormControl>
+                <Input {...field} placeholder="Nguyễn Văn X" />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-      </div>
-
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Họ và tên"
-          className="w-full mb-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-        />
-        <input
-          type="text"
-          placeholder="Số điện thoại"
-          className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-        />
-      </div>
-
-      <div className="mb-4">
-        <div className="mt-2">
-          <textarea
-            placeholder="Địa chỉ"
-            rows="2"
-            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-          ></textarea>
-        </div>
-        <div className="grid grid-cols-2 gap-2 mt-2">
-          <input
-            type="text"
-            placeholder="Quốc gia"
-            className="w-full p-2 border border-gray-300 rounded-md"
+        <div className="grid grid-cols-3 gap-5">
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Số điện thoại</FormLabel>
+                <FormControl>
+                  <Input {...field} placeholder="0123456789" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-          <input
-            type="text"
-            placeholder="Tỉnh / thành"
-            className="w-full p-2 border border-gray-300 rounded-md"
-          />
-          <input
-            type="text"
-            placeholder="Quận / huyện"
-            className="w-full p-2 border border-gray-300 rounded-md"
-          />
-          <input
-            type="text"
-            placeholder="Phường / xã"
-            className="w-full p-2 border border-gray-300 rounded-md"
+          <FormField
+            control={form.control}
+            name="address"
+            render={({ field }) => (
+              <FormItem className="col-span-2">
+                <FormLabel>Địa chỉ</FormLabel>
+                <FormControl>
+                  <Input {...field} placeholder="69 Vũ Tông Phan" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
         </div>
-      </div>
+        <div className="grid grid-cols-3 gap-3">
+          <FormField
+            control={form.control}
+            name="province"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Tỉnh / Thành Phố</FormLabel>
+                <FormControl>
+                  <Input {...field} placeholder="Hà Nội" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="distinct"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Huyện / Quận</FormLabel>
+                <FormControl>
+                  <Input {...field} placeholder="Thanh Xuân" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="vilage"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Xã / Phường</FormLabel>
+                <FormControl>
+                  <Input {...field} placeholder="Khương Trung" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <div className="flex items-center justify-evenly">
+          <Button variant="checkout" type="submit">
+            Thanh toán ship COD
+          </Button>
 
-      <div className="flex justify-between items-center mt-6">
-        <button
-          className="text-blue-500 text-sm"
-          onClick={() => navigate("/shoppingcart")}
-        >
-          Giỏ hàng
-        </button>
-        <button
-          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-          onClick={() => toast.success("Chức năng sẽ được hoàn thiện sau")}
-        >
-          Tiếp tục đến phương thức thanh toán
-        </button>
-      </div>
-    </div>
+          <Button variant="checkout" type="button">
+            Thanh toán VNPay
+          </Button>
+        </div>
+      </form>
+    </Form>
   );
 };
 

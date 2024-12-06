@@ -2,6 +2,7 @@ import { useShoeContext } from "@/context/ShoeContext";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../ui/button";
 
 const InformationProduct = () => {
   const [discountCode, setDiscountCode] = useState("");
@@ -57,7 +58,7 @@ const InformationProduct = () => {
           </div>
         ))}
 
-        <div className="mt-4 flex">
+        <div className="mt-4 flex items-center">
           <input
             type="text"
             placeholder="Mã giảm giá"
@@ -65,12 +66,14 @@ const InformationProduct = () => {
             onChange={handleDiscountChange}
             className="w-3/4 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-          <button
+          <Button
+            variant="checkout"
             onClick={() => toast.error("Mã giảm giá không hợp lệ")}
-            className="w-1/4 ml-2 p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+            className="w-1/4 ml-2 p-2 rounded-md"
+            size="lg"
           >
             Sử dụng
-          </button>
+          </Button>
         </div>
 
         <div className="mt-6 flex justify-between">
@@ -82,7 +85,7 @@ const InformationProduct = () => {
           <span className="text-sm">--</span>
         </div>
 
-        <div className="mt-6 flex justify-between text-lg font-bold">
+        <div className="mt-6 flex justify-between text-lg font-bold text-rose-600">
           <span>Tổng cộng</span>
           <span>{total.toLocaleString()}₫</span>
         </div>

@@ -14,7 +14,7 @@ export const ShoeContextProvider = ({ children }) => {
 
   // Hàm thiết lập sản phẩm muốn checkout (một hoặc nhiều sản phẩm)
   const startCheckout = (products) => {
-    setCheckoutProduct([...checkoutProduct, ...products]);
+    setCheckoutProduct(products);
   };
 
   const contextValue = {
