@@ -58,10 +58,11 @@ const ShoppingCart = () => {
       quantity: item.quantity,
       price: item.product_id.price,
       imageUrl: item.thumbnail,
+      product_id: item.product_id.id,
     }));
 
     startCheckout(productList);
-    navigate("/checkouts");
+    navigate("/checkouts?f=sc");
   };
 
   // const [productCheckout, setProductCheckout] = useState({

@@ -80,6 +80,7 @@ const DetailProductInfo = ({ productData }) => {
         name: productData.name,
         price: productData.price,
         imageUrl: productData.product_images[0].imageUrl,
+        product_id: productData.id,
       },
     ]);
     navigate("/checkouts");
