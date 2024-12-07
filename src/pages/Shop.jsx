@@ -1,6 +1,7 @@
 import BreadCrumb from "@/components/breadcrumb";
-import AllProduct from "@/components/Shop/AllProduct";
-import ShopCategories from "@/components/Shop/ShopCategories";
+import AllProduct from "@/components/Shop/all-product";
+import DescriptionShop from "@/components/Shop/desc-shop";
+import ShopCategories from "@/components/Shop/shop-categories";
 
 const ShopPage = () => {
   return (
@@ -9,7 +10,7 @@ const ShopPage = () => {
       <div className="flex gap-5">
         <ShopCategories />
         <div className="flex flex-col flex-1 space-y-4">
-          <p>this is shop page</p>
+          <DescriptionShop />
           <AllProduct />
         </div>
       </div>
