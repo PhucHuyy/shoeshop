@@ -20,6 +20,7 @@ import ChangingPass from "./pages/ChangingPass";
 import ScrollToTop from "./components/scroll-to-top";
 import CheckOut from "./pages/CheckOut";
 import Search from "./pages/Search";
+import Order from "./pages/Order";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
           <Route path="/account/changing-password" element={<ChangingPass />} />
           <Route path="/checkouts" element={<CheckOut />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/account/orders" element={<Order />} />
         </Routes>
       </div>
       <Footer />

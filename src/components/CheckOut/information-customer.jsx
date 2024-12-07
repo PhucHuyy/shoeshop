@@ -1,5 +1,5 @@
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -14,10 +14,13 @@ import {
 import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { useShoeContext } from "@/context/ShoeContext";
+import { useState } from "react";
+import axios from "axios";
 
 const schema = z.object({
-  name: z.string().min(1, { message: "Họ và tên không được để trống" }),
-  phone: z.string().min(10, { message: "Số điện thoại không hợp lệ" }),
+  fullname: z.string().min(1, { message: "Họ và tên không được để trống" }),
+  phone_number: z.string().min(10, { message: "Số điện thoại không hợp lệ" }),
   address: z.string().min(1, { message: "Địa chỉ không được để trống" }),
   province: z
     .string()
@@ -28,11 +31,14 @@ const schema = z.object({
 
 const InfomationCustomer = () => {
   const navigate = useNavigate();
+  const [params] = useSearchParams();
+  const { f } = Object.fromEntries(params);
+
   const form = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
-      name: "",
-      phone: "",
+      fullname: "",
+      phone_number: "",
       address: "",
       province: "",
       distinct: "",
@@ -40,17 +46,67 @@ const InfomationCustomer = () => {
     },
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const { checkoutProduct } = useShoeContext();
+  const [loading, setLoading] = useState(false);
+
+  const onSubmit = async (formValues) => {
+    setLoading(true);
+
+    // Gộp các trường thành shipping_address
+    const shipping_address =
+      formValues.address +
+      formValues.province +
+      formValues.distinct +
+      formValues.vilage;
+
+    const { fullname, phone_number } = formValues;
+
+    for (let i = 0; i < checkoutProduct.length; i++) {
+      const product_id = checkoutProduct[i].product_id;
+      const quantity = checkoutProduct[i].quantity;
+      const size = checkoutProduct[i].size;
+      const data = {
+        fullname,
+        phone_number,
+        shipping_address,
+        note: "Hàng dễ vỡ",
+        payment_method: "COD",
+        order_item: {
+          product_id,
+          quantity,
+          size,
+          is_buy_now: f === "sc" ? false : true,
+        },
+      };
+
+      try {
+        await axios.post("http://localhost:8080/orders/checkout", data, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+      } catch {
+        toast.error("Đặt hàng thất bại");
+        setLoading(false);
+        return;
+      }
+
+      if (f === "sc") {
+        break;
+      }
+    }
+
+    setLoading(false);
     toast.success("Đặt hàng thành công");
-    // navigate("/shoppingcart");
+    navigate("/account/orders");
   };
+
   return (
     <Form {...form}>
       <form className="space-y-5" onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
-          name="name"
+          name="fullname"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Họ và tên</FormLabel>
@@ -64,7 +120,7 @@ const InfomationCustomer = () => {
         <div className="grid grid-cols-3 gap-5">
           <FormField
             control={form.control}
-            name="phone"
+            name="phone_number"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Số điện thoại</FormLabel>
@@ -131,7 +187,7 @@ const InfomationCustomer = () => {
           />
         </div>
         <div className="flex items-center justify-evenly">
-          <Button variant="checkout" type="submit">
+          <Button variant="checkout" type="submit" disabled={loading}>
             Thanh toán ship COD
           </Button>
 
