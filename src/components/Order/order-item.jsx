@@ -1,4 +1,11 @@
-import { Button } from "../ui/button";
+import { cn } from "@/lib/utils";
+
+const statusMenu = {
+  pending: "Chờ xác nhận",
+  delivering: "Đang vận chuyển",
+  shipped: "Giao thành công",
+  canceled: "Đã huỷ",
+};
 
 const OrderItem = ({ item, hasSeparator, color }) => {
   return (
@@ -21,8 +28,20 @@ const OrderItem = ({ item, hasSeparator, color }) => {
 
         <p className="text-sm font-medium">{item.total_price}</p>
 
-        <div className="flex items-center justify-center gap-2">
-          {item.status}
+        <div
+          className={cn(
+            "border-2 rounded-full px-3 py-1 text-sm font-semibold",
+            item.status === "pending" &&
+              "text-yellow-500 border-yellow-500 bg-yellow-100",
+            item.status === "delivering" &&
+              "text-blue-500 border-blue-500 bg-blue-100",
+            item.status === "shipped" &&
+              "text-green-500 border-green-500 bg-green-100",
+            item.status === "canceled" &&
+              "text-red-500 border-red-500 bg-red-100"
+          )}
+        >
+          {statusMenu[item.status]}
         </div>
         {/* {item.status === "pending" && (
           <Button

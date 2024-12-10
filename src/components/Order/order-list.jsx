@@ -1,9 +1,9 @@
-import { getRandomColor } from "@/lib/utils";
 import OrderItem from "./order-item";
+import OrderDetailDialog from "./order-detail-dialog";
+
+import { getRandomColor } from "@/lib/utils";
 
 const OrderList = ({ data }) => {
-  console.log(data);
-
   return (
     <div>
       <div className="grid grid-cols-4 text-center font-bold border-b pb-4 mb-4 px-5">
@@ -29,26 +29,28 @@ const OrderList = ({ data }) => {
               image: order.order_details[i].thumbnail,
               quantity: order.order_details[i].quantity,
               size: order.order_details[i].size,
+              shipping_address: order.shipping_address,
+              phone_number: order.phone_number,
             });
           }
-
           const color = getRandomColor();
 
           return (
-            <button
-              key={index}
-              className="border-2 rounded-lg px-5 py-2 space-y-3 cursor-pointer"
-              style={{ borderColor: color }}
-            >
-              {subOrders.map((item, subIndex) => (
-                <OrderItem
-                  key={`${index}_${subIndex}`}
-                  item={item}
-                  hasSeparator={subIndex === subOrders.length - 1}
-                  color={color}
-                />
-              ))}
-            </button>
+            <OrderDetailDialog key={index} data={subOrders}>
+              <div
+                className="border-2 rounded-lg px-5 py-2 space-y-3 cursor-pointer"
+                style={{ borderColor: color }}
+              >
+                {subOrders.map((item, subIndex) => (
+                  <OrderItem
+                    key={`${index}_${subIndex}`}
+                    item={item}
+                    hasSeparator={subIndex === subOrders.length - 1}
+                    color={color}
+                  />
+                ))}
+              </div>
+            </OrderDetailDialog>
           );
         })}
       </div>
