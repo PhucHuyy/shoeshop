@@ -40,8 +40,8 @@ const OrderList = ({ data }) => {
           return (
             <OrderDetailDialog key={index} data={subOrders}>
               <div
-                className="border-2 rounded-lg px-5 py-2 space-y-3 cursor-pointer"
-                style={{ borderColor: color }}
+                className="border-2 rounded-lg px-5 py-2 space-y-3 cursor-pointer border-gray-300"
+                // style={{ borderColor: color }}
               >
                 {subOrders.map((item, subIndex) => (
                   <OrderItem
