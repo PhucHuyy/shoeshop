@@ -17,6 +17,7 @@ import { Button } from "../ui/button";
 import { useShoeContext } from "@/context/ShoeContext";
 import { useState } from "react";
 import axios from "axios";
+import { createVnPayPayment } from "../Payment/payment-service";
 
 const schema = z.object({
   fullname: z.string().min(1, { message: "Họ và tên không được để trống" }),
@@ -55,9 +56,12 @@ const InfomationCustomer = () => {
     // Gộp các trường thành shipping_address
     const shipping_address =
       formValues.address +
-      formValues.province +
+      ", " +
+      formValues.vilage +
+      ", " +
       formValues.distinct +
-      formValues.vilage;
+      ", " +
+      formValues.province;
 
     const { fullname, phone_number } = formValues;
 
@@ -100,6 +104,71 @@ const InfomationCustomer = () => {
     toast.success("Đặt hàng thành công");
     navigate("/account/orders");
   };
+
+  const handlePayment = async () => {
+    const { isSubmitting, isValid } = form.formState;
+    if (isSubmitting || !isValid) {
+      toast.error("Vui lòng kiểm tra lại thông tin");
+      return;
+    } else {
+      const formData = form.getValues();
+      const shipping_address =
+        formData.address +
+        ", " +
+        formData.vilage +
+        ", " +
+        formData.distinct +
+        ", " +
+        formData.province;
+
+      const { fullname, phone_number } = formData;
+      const orderData = {
+        fullname,
+        phone_number,
+        shipping_address,
+        note: "Hàng dễ vỡ",
+        payment_method: "VNPay",
+        order_item: checkoutProduct.map((product) => ({
+          product_id: product.product_id,
+          quantity: product.quantity,
+          size: product.size,
+          is_buy_now: f === "sc" ? false : true,
+        })),
+      };
+
+      console.log(orderData);
+
+      // const res = await createVnPayPayment(orderData);
+      // console.log(res.data);
+
+      // if (res.code === "00") {
+      //   window.location.href = res.data;
+      // }
+
+      // setLoading(true);
+      // try {
+      //   const res = await createVnPayPayment();
+      //   if (res.code === "00") {
+      //     window.location.href = res.data;
+      //   } else {
+      //     toast.error("Không thể thực hiện thanh toán");
+      //   }
+      // } catch {
+      //   toast.error("Thanh toán thất bại");
+      // } finally {
+      //   setLoading(false);
+      // }
+    }
+  };
+
+  // const testHandlePayment = () => {
+  //   const { isSubmitting, isValid } = form.formState;
+  //   if (isSubmitting || !isValid) {
+  //     toast.error("Vui lòng kiểm tra lại thông tin");
+  //   } else {
+  //     toast.success("Thanh toán thành công");
+  //   }
+  // };
 
   return (
     <Form {...form}>
@@ -191,7 +260,12 @@ const InfomationCustomer = () => {
             Thanh toán ship COD
           </Button>
 
-          <Button variant="checkout" type="button">
+          <Button
+            variant="checkout"
+            type="button"
+            disabled={loading}
+            onClick={handlePayment}
+          >
             Thanh toán VNPay
           </Button>
         </div>

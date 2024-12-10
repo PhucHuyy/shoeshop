@@ -18,6 +18,7 @@ const OrderList = ({ data }) => {
 
           for (let i = 0; i < order.order_details.length; i++) {
             subOrders.push({
+              user_id: order.user_id,
               id: order.id,
               fullname: order.fullname,
               note: order.note,
@@ -31,6 +32,7 @@ const OrderList = ({ data }) => {
               size: order.order_details[i].size,
               shipping_address: order.shipping_address,
               phone_number: order.phone_number,
+              payment_method: order.payment_method,
             });
           }
           const color = getRandomColor();
