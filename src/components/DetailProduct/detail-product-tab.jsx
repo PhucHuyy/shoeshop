@@ -7,7 +7,7 @@ const TabDemo = ({ description }) => {
         defaultValue="description"
         className="w-[80%] text-lg border border-pink-300 rounded-lg"
       >
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid grid-cols-3">
           <TabsTrigger value="description" className="text-lg font-bold">
             MÔ TẢ SẢN PHẨM
           </TabsTrigger>

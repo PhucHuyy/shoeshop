@@ -105,13 +105,15 @@ const InfomationCustomer = () => {
     navigate("/account/orders");
   };
 
+  const { isSubmitting, isValid } = form.formState;
+
   const handlePayment = async () => {
-    const { isSubmitting, isValid } = form.formState;
-    if (isSubmitting || !isValid) {
+    if (!isValid) {
       toast.error("Vui lòng kiểm tra lại thông tin");
       return;
     } else {
       const formData = form.getValues();
+
       const shipping_address =
         formData.address +
         ", " +
@@ -122,34 +124,73 @@ const InfomationCustomer = () => {
         formData.province;
 
       const { fullname, phone_number } = formData;
-      const orderData = {
-        fullname,
-        phone_number,
-        shipping_address,
-        note: "Hàng dễ vỡ",
-        payment_method: "VNPay",
-        order_item: checkoutProduct.map((product) => ({
-          product_id: product.product_id,
-          quantity: product.quantity,
-          size: product.size,
-          is_buy_now: f === "sc" ? false : true,
-        })),
-      };
+      for (let i = 0; i < checkoutProduct.length; i++) {
+        const product = checkoutProduct[i];
+        const orderData = {
+          fullname,
+          phone_number,
+          shipping_address,
+          note: "Hàng dễ vỡ",
+          payment_method: "VNPay",
+          order_item: {
+            product_id: product.product_id,
+            quantity: product.quantity,
+            size: product.size,
+            is_buy_now: f === "sc" ? false : true,
+          },
+        };
 
-      console.log(orderData);
+        const totalMoney = product.price * product.quantity;
+
+        // console.log(orderData);
+
+        setLoading(true);
+        try {
+          const res = await createVnPayPayment(orderData, totalMoney);
+
+          if (res.code !== 200) {
+            toast.error("Không thể thực hiện thanh toán");
+            return;
+          }
+
+          window.location.href = res.payload;
+        } catch (error) {
+          console.log(error);
+        }
+
+        setLoading(false);
+
+        if (f === "sc") {
+          break;
+        }
+      }
+      // const orderData = {
+      //   fullname,
+      //   phone_number,
+      //   shipping_address,
+      //   note: "Hàng dễ vỡ",
+      //   payment_method: "VNPay",
+      //   order_item: checkoutProduct.map((product) => ({
+      //     product_id: product.product_id,
+      //     quantity: product.quantity,
+      //     size: product.size,
+      //     is_buy_now: f === "sc" ? false : true,
+      //   })),
+      // };
+
+      // console.log(orderData);
 
       // const res = await createVnPayPayment(orderData);
-      // console.log(res.data);
 
       // if (res.code === "00") {
-      //   window.location.href = res.data;
+      //   window.location.href = res.payload;
       // }
 
       // setLoading(true);
       // try {
-      //   const res = await createVnPayPayment();
+      //   const res = await createVnPayPayment(orderData);
       //   if (res.code === "00") {
-      //     window.location.href = res.data;
+      //     window.location.href = res.payload;
       //   } else {
       //     toast.error("Không thể thực hiện thanh toán");
       //   }
@@ -158,17 +199,12 @@ const InfomationCustomer = () => {
       // } finally {
       //   setLoading(false);
       // }
+
+      // if (f === "sc") {
+      //   break;
+      // }
     }
   };
-
-  // const testHandlePayment = () => {
-  //   const { isSubmitting, isValid } = form.formState;
-  //   if (isSubmitting || !isValid) {
-  //     toast.error("Vui lòng kiểm tra lại thông tin");
-  //   } else {
-  //     toast.success("Thanh toán thành công");
-  //   }
-  // };
 
   return (
     <Form {...form}>
