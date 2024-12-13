@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn, convertCurrency } from "@/lib/utils";
 
 const statusMenu = {
   pending: "Chờ xác nhận",
@@ -24,9 +24,13 @@ const OrderItem = ({ item, hasSeparator, color }) => {
           </div>
         </div>
 
-        <p className="text-sm font-medium">{item.unit_price}</p>
+        <p className="text-sm font-medium">
+          {convertCurrency(item.unit_price)}
+        </p>
 
-        <p className="text-sm font-medium">{item.total_price}</p>
+        <p className="text-sm font-medium">
+          {convertCurrency(item.total_price)}
+        </p>
 
         <div
           className={cn(

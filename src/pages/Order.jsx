@@ -4,10 +4,40 @@ import toast from "react-hot-toast";
 
 import OrderList from "@/components/Order/order-list";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Order = () => {
+  const [params] = useSearchParams();
+  const { code } = Object.fromEntries(params);
+
   const [orderList, setOrderList] = useState([]);
+
   useEffect(() => {
+    const handleToast = () => {
+      if (code) {
+        switch (code) {
+          case "00":
+            // console.log("Thanh toán thành công!");
+            // toast.success("Đặt hàng thành công!");
+            alert("Đặt hàng thành công!");
+            break;
+          case "24":
+            // console.log("Thanh toán bị huỷ");
+            // toast.error("Thực hiện thanh toán bị hủy!");
+            alert("Thực hiện thanh toán bị hủy!");
+            break;
+          case "01":
+            // console.log("Thanh toán thất bại!");
+            // toast.error("Thanh toán thất bại!");
+            alert("Thanh toán thất bại!");
+            break;
+          default:
+            toast.info("Không xác định trạng thái thanh toán.");
+            break;
+        }
+      }
+    };
+
     const fetchData = async () => {
       try {
         const res = await axios.get("http://localhost:8080/orders", {
@@ -20,6 +50,7 @@ const Order = () => {
         toast.error("Lỗi khi lấy dữ liệu");
       }
     };
+    handleToast();
     fetchData();
   }, []);
 

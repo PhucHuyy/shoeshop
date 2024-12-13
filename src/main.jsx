@@ -7,13 +7,13 @@ import { TooltipProvider } from "./components/ui/tooltip";
 import { ShoeContextProvider } from "./context/ShoeContext";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <BrowserRouter>
-      <ShoeContextProvider>
-        <TooltipProvider>
-          <App />
-        </TooltipProvider>
-      </ShoeContextProvider>
-    </BrowserRouter>
-  </StrictMode>
+  // <StrictMode>
+  <BrowserRouter>
+    <ShoeContextProvider>
+      <TooltipProvider>
+        <App />
+      </TooltipProvider>
+    </ShoeContextProvider>
+  </BrowserRouter>
+  // </StrictMode>
 );
