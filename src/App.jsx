@@ -21,6 +21,7 @@ import ScrollToTop from "./components/scroll-to-top";
 import CheckOut from "./pages/CheckOut";
 import Search from "./pages/Search";
 import Order from "./pages/Order";
+import VNPayCallback from "./pages/VNPayCallback";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           <Route path="/checkouts" element={<CheckOut />} />
           <Route path="/search" element={<Search />} />
           <Route path="/account/orders" element={<Order />} />
+          <Route path="/payment/vn-pay-callback" element={<VNPayCallback />} />
         </Routes>
       </div>
       <Footer />
