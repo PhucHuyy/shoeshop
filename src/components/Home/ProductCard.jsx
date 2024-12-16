@@ -13,11 +13,11 @@ const ProductCard = ({ data }) => {
       className="flex flex-col gap-3 p-2 border-2 rounded-lg shadow hover:border-red-200 cursor-pointer"
       onClick={() => navigate("/product/" + id)}
     >
-      <div className="aspect-square">
+      <div className="aspect-square overflow-hidden">
         <img
           src={`http://localhost:8080/products/images/` + thumbnail}
           alt={name}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover transition-transform duration-300 ease-in-out hover:scale-105"
         />
       </div>
       <div className="font-semibold cursor-pointer hover:text-red-400">

@@ -1,8 +1,12 @@
 const DescHotSale = () => {
   return (
     <div className="">
-      <div className="w-full h-full object-cover">
-        <img src="/hotsales.jpg" alt="Hình ảnh minh hoạ" />
+      <div className="w-full h-full object-cover overflow-hidden">
+        <img
+          src="/hotsales.jpg"
+          alt="Hình ảnh minh hoạ"
+          className=" transition-transform duration-300 ease-in-out hover:scale-105"
+        />
         <div className="font-semibold text-5xl py-4">HOT SALES</div>
         <div className="py-2 text-justify bold">
           Mua giày đá banh chính hãng với giá ưu đãi - HOT Sale từ các thương
