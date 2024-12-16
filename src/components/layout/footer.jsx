@@ -10,8 +10,12 @@ import {
 const Footer = () => {
   return (
     <div className="flex justify-around mt-7">
-      <div className="flex-col">
-        <img src="{Logo}" alt="NPC Store" />
+      <div className="flex-col ">
+        <img
+          src="/logo-footer.png"
+          alt="NPC Store"
+          className="w-[150px] h-[100px] object-cover rounded-lg"
+        />
       </div>
       <div className="flex flex-col items-start space-y-4">
         <h5 className="text-lg font-semibold">Thông tin liên hệ</h5>

@@ -7,7 +7,11 @@ const Header = () => {
     <div className="flex flex-col gap-3">
       <div className="h-header flex items-center justify-between w-full gap-10">
         <div className="w-[20%] h-full bg-white">
-          <img src="" alt="Logo" className="w-full h-full object-cover" />
+          <img
+            src="/logo.png"
+            alt="Logo"
+            className="w-full h-full object-cover"
+          />
         </div>
         <SearchBar />
         <HeaderActions />
