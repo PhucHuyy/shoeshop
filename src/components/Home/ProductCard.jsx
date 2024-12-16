@@ -1,6 +1,5 @@
 import { convertCurrency } from "@/lib/utils";
 import { ShoppingCart } from "lucide-react";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ data }) => {

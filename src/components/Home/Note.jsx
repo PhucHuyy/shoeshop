@@ -6,7 +6,7 @@ import Note4 from "/note4.png";
 const Note = () => {
   return (
     <div>
-      <p className="text-center text-3xl font-normal">BẠN ĐANG QUAN TÂM</p>
+      <p className="text-center text-3xl font-normal py-4">DANH MỤC SẢN PHẨM</p>
       <p className="text-center font-normal">___________________</p>
       <br />
       <br />

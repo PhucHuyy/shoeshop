@@ -37,7 +37,7 @@ const ExperienceList = () => {
 
   return (
     <div>
-      <p className="text-center text-3xl font-normal">
+      <p className="text-center text-3xl font-normal pt-4">
         TRẢI NGHIỆM MUA SẮM TẠI CỬA HÀNG
       </p>
       <p className="text-center font-normal">

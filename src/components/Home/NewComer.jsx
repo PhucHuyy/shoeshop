@@ -35,7 +35,7 @@ const NewComer = () => {
           alt="No Product"
           className="w-[192px] h-[192px]"
         />
-        Hiện tại không có sản phẩm, nhót !!!
+        Hiện tại không có sản phẩm !!!
       </div>
     );
   }
