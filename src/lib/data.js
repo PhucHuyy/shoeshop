@@ -121,18 +121,18 @@ export const headerMenu = [
   },
   {
     trigger: "HOT SALES",
-    hasSubMenu: true,
+    hasSubMenu: false,
     href: "/collections/hot-sales",
-    subMenu: [
-      {
-        title: "GIÀY NHÂN TẠO",
-        subHref: "/collections/hot-sales",
-      },
-      {
-        title: "GIÀY FUTSAL",
-        subHref: "/collections/hot-sales",
-      },
-    ],
+    // subMenu: [
+    //   {
+    //     title: "GIÀY NHÂN TẠO",
+    //     subHref: "/collections/hot-sales",
+    //   },
+    //   {
+    //     title: "GIÀY FUTSAL",
+    //     subHref: "/collections/hot-sales",
+    //   },
+    // ],
   },
   {
     trigger: "PHỤ KIỆN",

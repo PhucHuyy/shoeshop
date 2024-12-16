@@ -128,7 +128,7 @@ const DetailProductInfo = ({ productData }) => {
           <p className="font-semibold">Kích thước</p>
           <div className="grid grid-cols-4 gap-4 mt-2">
             {productData.sizes.length === 0
-              ? "Đéo có size"
+              ? "Không có size"
               : allSize.map((item) => (
                   <button
                     key={item.id}
