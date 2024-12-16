@@ -2,7 +2,7 @@ import ProductCard from "@/components/Home/ProductCard";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const Search = () => {
   const [params] = useSearchParams();
