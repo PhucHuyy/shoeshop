@@ -38,7 +38,7 @@ const AllProduct = () => {
   }
 
   return (
-    <div className="grid grid-cols-4 gap-5 px-14">
+    <div className="grid grid-cols-4 gap-5">
       {products.map((item, index) => (
         <ProductCard key={index} data={item} />
       ))}

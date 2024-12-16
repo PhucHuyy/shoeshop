@@ -10,7 +10,7 @@ import {
 const BreadCrumb = ({ type }) => {
   const { title, path } = breadcrumbs[type];
   return (
-    <div>
+    <div className="">
       <Breadcrumb>
         <BreadcrumbList className="text-md text-black font-semibold">
           <BreadcrumbItem>
