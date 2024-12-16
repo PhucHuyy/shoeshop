@@ -1,5 +1,6 @@
 import BreadCrumb from "@/components/Breadcrumb";
-import AllProduct from "@/components/Shop/all-product";
+import DescHotSale from "@/components/HotSales/desc-hot-sale";
+import ProductCardSale from "@/components/ProductCardSale";
 import ShopCategories from "@/components/Shop/shop-categories";
 
 const HotSales = () => {
@@ -9,8 +10,8 @@ const HotSales = () => {
       <div className="flex gap-5">
         <ShopCategories />
         <div className="flex flex-col flex-1 space-y-4">
-          <p>this is shop page</p>
-          <AllProduct />
+          <DescHotSale />
+          <ProductCardSale />
         </div>
       </div>
     </div>
