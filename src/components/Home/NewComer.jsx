@@ -10,7 +10,7 @@ const NewComer = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8080/products?page=0&limit=20"
+          "http://localhost:8080/products/Sale?page=0&limit=20&is_sale=false"
         );
 
         const prod = res.data.payload.products;
