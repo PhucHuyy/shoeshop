@@ -3,7 +3,7 @@ import { ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ data }) => {
-  const { name, thumbnail, price, id } = data;
+  const { name, thumbnail, price, id, discounted_price, is_sale } = data;
   // console.log(data);
 
   const navigate = useNavigate();
@@ -24,7 +24,16 @@ const ProductCard = ({ data }) => {
         {name}
       </div>
       <div className="mt-auto flex items-center justify-between">
-        {convertCurrency(price)}
+        <div className="flex space-x-4 items-center">
+          <span className="text-red-500 font-bold text-xl">
+            {convertCurrency(price)}
+          </span>
+          {is_sale === true && (
+            <span className="text-gray-500 line-through">
+              {convertCurrency(discounted_price)}
+            </span>
+          )}
+        </div>
         <button className="hover:text-red-400 active:text-red-600">
           <ShoppingCart className="cursor-pointer" />
         </button>

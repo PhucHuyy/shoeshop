@@ -24,7 +24,6 @@ const Search = () => {
     };
     fetchData();
   }, [name, page, limit]);
-  console.log(products);
 
   return (
     <div className="space-y-10 px-24 pt-10">

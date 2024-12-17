@@ -12,12 +12,15 @@ const DetailProductInfo = ({ productData }) => {
     return a.size - b.size;
   });
 
+  const allColor = [...productData.colors];
+
   const [loading, setLoading] = useState(false);
 
   const [product, setProduct] = useState({
     product_id: productData.id,
     size: allSize[0].size,
     quantity: 1,
+    color: allColor[0].color,
   });
 
   const handleDecrease = () => {
@@ -41,6 +44,13 @@ const DetailProductInfo = ({ productData }) => {
     }));
   };
 
+  const handleColor = (color) => {
+    setProduct((prev) => ({
+      ...prev,
+      color,
+    }));
+  };
+
   const handleSubmit = async () => {
     try {
       setLoading(true);
@@ -60,6 +70,7 @@ const DetailProductInfo = ({ productData }) => {
         product_id: productData.id,
         size: allSize[0].size,
         quantity: 1,
+        color: allColor[0].color,
       });
     } catch (error) {
       console.log(error);
@@ -68,6 +79,8 @@ const DetailProductInfo = ({ productData }) => {
     } finally {
       setLoading(false);
     }
+
+    console.log(product);
   };
 
   const { startCheckout } = useShoeContext();
@@ -81,6 +94,7 @@ const DetailProductInfo = ({ productData }) => {
         price: productData.price,
         imageUrl: productData.product_images[0].imageUrl,
         product_id: productData.id,
+        color: product.color,
       },
     ]);
     navigate("/checkouts");
@@ -101,12 +115,23 @@ const DetailProductInfo = ({ productData }) => {
       <div className="flex-1">
         <h2 className="text-xl font-bold">{productData.name}</h2>
         <p className="text-sm text-gray-500">
-          Loại: {productData.category_id} | Mã SP: {productData.id}
+          Loại: {productData.category.name} | Mã SP: {productData.id}
         </p>
-        <div className="mt-4">
-          <span className="text-red-500 text-2xl font-bold">
-            {productData.price.toLocaleString()}
-          </span>
+        <div className="mt-4 space-x-10">
+          {productData.is_sale ? (
+            <>
+              <span className="text-red-500 text-2xl font-bold">
+                {productData.discounted_price.toLocaleString()}
+              </span>
+              <span className="text-black-200 text-lg font-bold line-through">
+                {productData.price.toLocaleString()}
+              </span>
+            </>
+          ) : (
+            <span className="text-red-500 text-2xl font-bold">
+              {productData.price.toLocaleString()}
+            </span>
+          )}
           {/* <span className="line-through text-gray-500 ml-4">
             {productData.originalPrice.toLocaleString()}₫
           </span>
@@ -122,6 +147,28 @@ const DetailProductInfo = ({ productData }) => {
             <span className="text-blue-500">Fundiin</span>
           </p>
         </div> */}
+
+        {/** Lựa chọn màu*/}
+        <div className="mt-4">
+          <p className="font-semibold">Màu sắc</p>
+          <div className="grid grid-cols-4 gap-4 mt-2">
+            {productData.colors.length === 0
+              ? "Hiện chưa có màu"
+              : allColor.map((item) => (
+                  <button
+                    key={item.id}
+                    className={`px-4 py-2 border ${
+                      item.color === product.color
+                        ? "border-red-300"
+                        : "border-gray-300"
+                    } hover:border-red-300 rounded-xl `}
+                    onClick={() => handleColor(item.color)}
+                  >
+                    {item.color}
+                  </button>
+                ))}
+          </div>
+        </div>
 
         {/* Lựa chọn kích thước */}
         <div className="mt-4">

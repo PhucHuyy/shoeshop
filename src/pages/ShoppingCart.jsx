@@ -59,6 +59,7 @@ const ShoppingCart = () => {
       price: item.product_id.price,
       imageUrl: item.thumbnail,
       product_id: item.product_id.id,
+      color: item.color,
     }));
 
     startCheckout(productList);

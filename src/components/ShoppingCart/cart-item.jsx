@@ -78,6 +78,7 @@ const CartItem = (props) => {
             Mã SP: {productData.product_id.id}
           </p>
           <p className="text-gray-500 text-sm">Size: {productData.size}</p>
+          <p className="text-gray-500 text-sm">Màu: {productData.color}</p>
         </div>
       </div>
 
