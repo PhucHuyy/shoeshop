@@ -29,8 +29,6 @@ const DetailProduct = () => {
     fetchData();
   }, [navigate, productId]);
 
-  console.log(productData);
-
   // Nếu productData chưa có dữ liệu, hiển thị loader
   if (!productData) {
     return (

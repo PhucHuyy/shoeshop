@@ -71,18 +71,25 @@ const Order = () => {
     (product) => product.status === "canceled"
   );
 
+  const waitingDeliverProducts = orderList.filter(
+    (product) => product.status === "awaiting"
+  );
+
   return (
     <div className="flex items-center justify-center min-w-[80%] pt-5">
       <Tabs
         defaultValue="all"
         className="w-[90%] text-lg border border-gray-300 rounded-lg"
       >
-        <TabsList className="grid w-full grid-cols-5">
+        <TabsList className="grid w-full grid-cols-6">
           <TabsTrigger value="all" className="text-lg font-bold">
             TẤT CẢ ĐƠN HÀNG
           </TabsTrigger>
           <TabsTrigger value="pending" className="text-lg font-bold">
             CHỜ XÁC NHẬN
+          </TabsTrigger>
+          <TabsTrigger value="waiting-deliver" className="text-lg font-bold">
+            CHỜ VẬN CHUYỂN
           </TabsTrigger>
           <TabsTrigger value="delivering" className="text-lg font-bold">
             ĐANG VẬN CHUYỂN
@@ -102,6 +109,11 @@ const Order = () => {
         <TabsContent value="pending" className="min-h-[500px] ">
           <div className="px-[75px] py-5 space-y-5 text-sm font-semibold">
             <OrderList data={pendingProducts} />
+          </div>
+        </TabsContent>
+        <TabsContent value="waiting-deliver" className="min-h-[500px] ">
+          <div className="px-[75px] py-5 space-y-5 text-sm font-semibold">
+            <OrderList data={waitingDeliverProducts} />
           </div>
         </TabsContent>
         <TabsContent value="delivering" className="min-h-[500px] ">

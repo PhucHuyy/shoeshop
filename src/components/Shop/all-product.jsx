@@ -10,7 +10,7 @@ const AllProduct = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8080/products?page=0&limit=20"
+          "http://localhost:8080/products?page=0&limit=4"
         );
 
         const prod = res.data.payload.products;
