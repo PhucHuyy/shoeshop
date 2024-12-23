@@ -6,15 +6,19 @@ import {
   Phone,
   Twitter,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="flex justify-around mt-7">
       <div className="flex-col ">
         <img
           src="/logo-footer.png"
           alt="NPC Store"
-          className="w-[150px] h-[100px] object-cover rounded-lg"
+          className="w-[150px] h-[100px] object-cover rounded-lg cursor-pointer"
+          onClick={() => navigate("/")}
         />
       </div>
       <div className="flex flex-col items-start space-y-4">
