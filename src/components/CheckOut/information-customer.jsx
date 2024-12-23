@@ -69,6 +69,7 @@ const InfomationCustomer = () => {
       const product_id = checkoutProduct[i].product_id;
       const quantity = checkoutProduct[i].quantity;
       const size = checkoutProduct[i].size;
+      const color = checkoutProduct[i].color;
       const data = {
         fullname,
         phone_number,
@@ -76,6 +77,7 @@ const InfomationCustomer = () => {
         note: "Hàng dễ vỡ",
         payment_method: "COD",
         order_item: {
+          color,
           product_id,
           quantity,
           size,
@@ -124,8 +126,10 @@ const InfomationCustomer = () => {
         formData.province;
 
       const { fullname, phone_number } = formData;
+
       for (let i = 0; i < checkoutProduct.length; i++) {
         const product = checkoutProduct[i];
+        const totalMoney = product.price * product.quantity;
         const orderData = {
           fullname,
           phone_number,
@@ -133,14 +137,13 @@ const InfomationCustomer = () => {
           note: "Hàng dễ vỡ",
           payment_method: "VNPay",
           order_item: {
+            color: product.color,
             product_id: product.product_id,
             quantity: product.quantity,
             size: product.size,
             is_buy_now: f === "sc" ? false : true,
           },
         };
-
-        const totalMoney = product.price * product.quantity;
 
         // console.log(orderData);
 
@@ -164,45 +167,6 @@ const InfomationCustomer = () => {
           break;
         }
       }
-      // const orderData = {
-      //   fullname,
-      //   phone_number,
-      //   shipping_address,
-      //   note: "Hàng dễ vỡ",
-      //   payment_method: "VNPay",
-      //   order_item: checkoutProduct.map((product) => ({
-      //     product_id: product.product_id,
-      //     quantity: product.quantity,
-      //     size: product.size,
-      //     is_buy_now: f === "sc" ? false : true,
-      //   })),
-      // };
-
-      // console.log(orderData);
-
-      // const res = await createVnPayPayment(orderData);
-
-      // if (res.code === "00") {
-      //   window.location.href = res.payload;
-      // }
-
-      // setLoading(true);
-      // try {
-      //   const res = await createVnPayPayment(orderData);
-      //   if (res.code === "00") {
-      //     window.location.href = res.payload;
-      //   } else {
-      //     toast.error("Không thể thực hiện thanh toán");
-      //   }
-      // } catch {
-      //   toast.error("Thanh toán thất bại");
-      // } finally {
-      //   setLoading(false);
-      // }
-
-      // if (f === "sc") {
-      //   break;
-      // }
     }
   };
 

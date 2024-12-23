@@ -49,6 +49,7 @@ const InformationProduct = () => {
                 {item.quantity} x {item.price.toLocaleString()}₫
               </p>
               <div className="text-sm text-gray-600">Size: {item.size}</div>
+              <div className="text-sm text-gray-600">Màu: {item.color}</div>
             </div>
             <div className="flex">
               <div className="text-sm text-gray-600">

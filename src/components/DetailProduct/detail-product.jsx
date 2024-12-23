@@ -4,6 +4,7 @@ import { Button } from "../ui/button";
 import toast from "react-hot-toast";
 import { useShoeContext } from "@/context/ShoeContext";
 import { useNavigate } from "react-router-dom";
+import CarouselDetailProduct from "./carousel-detail-product";
 
 const DetailProductInfo = ({ productData }) => {
   const navigate = useNavigate();
@@ -100,14 +101,56 @@ const DetailProductInfo = ({ productData }) => {
     navigate("/checkouts");
   };
 
+  const [selectedImage, setSelectedImage] = useState(
+    "http://localhost:8080/products/images/" + productData.thumbnail
+  );
+
   return (
     <div className="flex gap-14 p-6 w-[70%] items-center justify-between">
-      {/* Hiển thị hình ảnh chính */}
+      {/* <CarouselDetailProduct productData={productData} />
+       */}
+
+      {/* Hiển thị hình ảnh chính
       <div className="w-[407px] h-[407px] ">
         <img
           src={"http://localhost:8080/products/images/" + productData.thumbnail} // Lấy hình ảnh từ trường `image`
           alt={productData.name}
           className="w-full h-full object-cover  border border-gray-300"
+        />
+      </div> */}
+
+      {/* Bộ ảnh trượt (Carousel) */}
+      <div className="w-[80px] flex flex-col gap-3 overflow-y-auto">
+        {productData.product_images.map((item, index) => (
+          <div
+            key={index}
+            className={`w-[80px] h-[80px] overflow-hidden cursor-pointer ${
+              selectedImage ===
+              "http://localhost:8080/products/images/" + item.imageUrl
+                ? "border border-blue-500"
+                : "border border-gray-300"
+            }`}
+            onClick={() =>
+              setSelectedImage(
+                "http://localhost:8080/products/images/" + item.imageUrl
+              )
+            }
+          >
+            <img
+              className="w-full h-full object-cover"
+              src={"http://localhost:8080/products/images/" + item.imageUrl}
+              alt={productData.name}
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Ảnh lớn */}
+      <div className="w-[407px] h-[407px]">
+        <img
+          src={selectedImage}
+          alt={productData.name}
+          className="w-full h-full object-cover border border-gray-300"
         />
       </div>
 

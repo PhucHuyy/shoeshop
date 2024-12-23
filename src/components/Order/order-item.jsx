@@ -5,6 +5,7 @@ const statusMenu = {
   delivering: "Đang vận chuyển",
   shipped: "Giao thành công",
   canceled: "Đã huỷ",
+  awaiting: "Chờ vận chuyển",
 };
 
 const OrderItem = ({ item, hasSeparator, color }) => {
@@ -12,15 +13,18 @@ const OrderItem = ({ item, hasSeparator, color }) => {
     <div className="space-y-3">
       <div className="grid grid-cols-4 items-center text-center">
         <div className="flex items-center gap-5">
-          <img
-            src={`http://localhost:8080/products/images/${item.image}`}
-            alt="Sản phẩm"
-            className="w-20 h-20 object-cover"
-          />
+          <div className="w-[90px] h-[90px] flex-shrink-0 overflow-hidden bg-gray-200">
+            <img
+              src={`http://localhost:8080/products/images/${item.image}`}
+              alt="Sản phẩm"
+              className="w-full h-full object-cover"
+            />
+          </div>
           <div className="text-left">
             <h3 className="text-sm font-medium">{item.product_name}</h3>
             <p className="text-gray-500 text-sm">Size: {item.size}</p>
             <p className="text-gray-500 text-sm">SL: {item.quantity}</p>
+            <p className="text-gray-500 text-sm">Màu: {item.colorShoe}</p>
           </div>
         </div>
 
@@ -42,7 +46,9 @@ const OrderItem = ({ item, hasSeparator, color }) => {
             item.status === "shipped" &&
               "text-green-500 border-green-500 bg-green-100",
             item.status === "canceled" &&
-              "text-red-500 border-red-500 bg-red-100"
+              "text-red-500 border-red-500 bg-red-100",
+            item.status === "awaiting" &&
+              "text-yellow-900 border-yellow-900 bg-rose-100"
           )}
         >
           {statusMenu[item.status]}

@@ -18,6 +18,7 @@ const OrderList = ({ data }) => {
 
           for (let i = 0; i < order.order_details.length; i++) {
             subOrders.push({
+              colorShoe: order.order_details[i].color,
               user_id: order.user_id,
               id: order.id,
               fullname: order.fullname,
@@ -40,7 +41,7 @@ const OrderList = ({ data }) => {
           return (
             <OrderDetailDialog key={index} data={subOrders}>
               <div
-                className="border-2 rounded-lg px-5 py-2 space-y-3 cursor-pointer border-gray-300"
+                className="border-2 rounded-lg px-5 py-2 space-y-3 cursor-pointer border-gray-300 w-full"
                 // style={{ borderColor: color }}
               >
                 {subOrders.map((item, subIndex) => (

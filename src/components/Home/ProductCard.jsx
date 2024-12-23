@@ -25,12 +25,18 @@ const ProductCard = ({ data }) => {
       </div>
       <div className="mt-auto flex items-center justify-between">
         <div className="flex space-x-4 items-center">
-          <span className="text-red-500 font-bold text-xl">
-            {convertCurrency(price)}
-          </span>
-          {is_sale === true && (
-            <span className="text-gray-500 line-through">
-              {convertCurrency(discounted_price)}
+          {is_sale ? (
+            <>
+              <span className="text-red-500 text-xl font-bold">
+                {discounted_price.toLocaleString()}
+              </span>
+              <span className="text-black-200 text-lg font-bold line-through">
+                {price.toLocaleString()}
+              </span>
+            </>
+          ) : (
+            <span className="text-red-500 text-xl font-bold">
+              {price.toLocaleString()}
             </span>
           )}
         </div>
