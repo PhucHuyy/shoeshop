@@ -57,7 +57,7 @@ const HeaderMenuItem = ({ data, loggedIn }) => {
                 if (item.title === "Log out") {
                   removeToken();
                 }
-                navigate(item.href);
+                navigate(item.subHref);
               }}
             >
               <p>{item.title}</p>
