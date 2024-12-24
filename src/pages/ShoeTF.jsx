@@ -4,13 +4,14 @@ import ShopCategories from "@/components/Shop/shop-categories";
 import { useSearchParams } from "react-router-dom";
 
 import DescShoeTF from "@/components/ShoeTF/desc-shoe-tf";
-import NikeShoeTF from "@/pageCategoryShoe/nike/nike-shoe-tf";
-import PumaShoeTF from "@/pageCategoryShoe/nike/puma-shoe-tf";
-import AdidasShoeTF from "@/pageCategoryShoe/nike/adidas-shoe-tf";
-import MizunoShoeTF from "@/pageCategoryShoe/nike/mizuno-shoe-tf";
-import JomaShoeTF from "@/pageCategoryShoe/nike/joma-shoe-tf";
-import ZockerShoeTF from "@/pageCategoryShoe/nike/zocker-shoe-tf";
-import KamitoShoeTF from "@/pageCategoryShoe/nike/kamito-shoe-tf";
+import NikeShoeTF from "@/pageCategoryShoe/category-shoe-tf/nike-shoe-tf";
+import PumaShoeTF from "@/pageCategoryShoe/category-shoe-tf/puma-shoe-tf";
+import AdidasShoeTF from "@/pageCategoryShoe/category-shoe-tf/adidas-shoe-tf";
+import MizunoShoeTF from "@/pageCategoryShoe/category-shoe-tf/mizuno-shoe-tf";
+import JomaShoeTF from "@/pageCategoryShoe/category-shoe-tf/joma-shoe-tf";
+import ZockerShoeTF from "@/pageCategoryShoe/category-shoe-tf/zocker-shoe-tf";
+import KamitoShoeTF from "@/pageCategoryShoe/category-shoe-tf/kamito-shoe-tf";
+import CategoryShoeTF from "@/pageCategoryShoe/category-shoe-tf/category-shoe-tf";
 
 const ShoeTF = () => {
   const [searchParams] = useSearchParams();
@@ -45,7 +46,7 @@ const ShoeTF = () => {
 
     // Add more cases for other brands as needed
     default:
-      ProductComponent = AllProduct;
+      ProductComponent = CategoryShoeTF;
   }
 
   return (
