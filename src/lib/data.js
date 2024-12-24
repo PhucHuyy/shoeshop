@@ -17,39 +17,31 @@ export const headerMenu = [
     subMenu: [
       {
         title: "NIKE",
-        subHref: "/collections/nike-co-nhan-tao",
+        subHref: "/collections/giay-co-nhan-tao?brand=NIKE",
       },
       {
         title: "ADIDAS",
-        subHref: "/collections/adidas-co-nhan-tao",
+        subHref: "/collections/giay-co-nhan-tao?brand=ADIDAS",
       },
       {
         title: "PUMA",
-        subHref: "/collections/puma-co-nhan-tao",
+        subHref: "/collections/giay-co-nhan-tao?brand=PUMA",
       },
       {
         title: "MIZUNO",
-        subHref: "/collections/mizuno-co-nhan-tao",
+        subHref: "/collections/giay-co-nhan-tao?brand=MIZUNO",
       },
       {
         title: "JOMA",
-        subHref: "/collections/joma-co-nhan-tao",
-      },
-      {
-        title: "DESPORTE",
-        subHref: "/collections/desporte-co-nhan-tao",
-      },
-      {
-        title: "ASICS",
-        subHref: "/collections/asics-co-nhan-tao",
+        subHref: "/collections/giay-co-nhan-tao?brand=JOMA",
       },
       {
         title: "KAMITO",
-        subHref: "/collections/kamito-co-nhan-tao",
+        subHref: "/collections/giay-co-nhan-tao?brand=KAMITO",
       },
       {
         title: "ZOCKER",
-        subHref: "/collections/zocker-co-nhan-tao",
+        subHref: "/collections/giay-co-nhan-tao?brand=ZOCKER",
       },
     ],
   },
@@ -60,27 +52,31 @@ export const headerMenu = [
     subMenu: [
       {
         title: "NIKE",
-        subHref: "/collections/nike-fulsal",
+        subHref: "/collections/giay-futsal?brand=NIKE",
       },
       {
         title: "ADIDAS",
-        subHref: "/collections/adidas-fulsal",
+        subHref: "/collections/giay-futsal?brand=ADIDAS",
       },
       {
         title: "JOMA",
-        subHref: "/collections/joma-fulsal",
+        subHref: "/collections/giay-futsal?brand=JOMA",
       },
       {
         title: "MIZUNO",
-        subHref: "/collections/mizuno-fulsal",
+        subHref: "/collections/giay-futsal?brand=MIZUNO",
       },
       {
         title: "ASICS",
-        subHref: "/collections/asics-fulsal",
+        subHref: "/collections/giay-futsal?brand=ASICS",
       },
       {
         title: "KAMITO",
-        subHref: "/collections/kamito-fulsal",
+        subHref: "/collections/giay-futsal?brand=KAMITO",
+      },
+      {
+        title: "DESPORTE",
+        subHref: "/collections/giay-futsal?brand=DESPORTE",
       },
     ],
   },
@@ -110,12 +106,16 @@ export const headerMenu = [
         subHref: "/collections/joma-thuong-hieu",
       },
       {
-        title: "ATHLETA",
+        title: "ZOCKER",
         subHref: "/collections/athleta-thuong-hieu",
       },
       {
         title: "KAMITO",
         subHref: "/collections/kamito-thuong-hieu",
+      },
+      {
+        title: "ASICS",
+        subHref: "/collections/asics-thuong-hieu",
       },
     ],
   },
@@ -141,19 +141,19 @@ export const headerMenu = [
     subMenu: [
       {
         title: "BÓNG",
-        subHref: "/collections/bong-phu-kien",
+        subHref: "/collections/phu-kien?category=ball",
       },
       {
         title: "TẤT",
-        subHref: "/collections/tat-phu-kien",
+        subHref: "/collections/phu-kien?category=socks",
       },
       {
         title: "BALO",
-        subHref: "/collections/balo-phu-kien",
+        subHref: "/collections/phu-kien?category=bag",
       },
       {
-        title: "PHỤ KIỆN MIZUNO",
-        subHref: "/collections/mizuno-phu-kien",
+        title: "LÓT GIÀY",
+        subHref: "/collections/phu-kien?category=insole",
       },
     ],
   },

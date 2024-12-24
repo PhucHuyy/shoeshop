@@ -21,25 +21,25 @@ const data = {
   subMenu: [
     {
       title: "Profile",
-      href: "/account/profile",
+      subHref: "/account/profile",
       icon: UserPen,
       requiresAuth: true,
     },
     {
       title: "Orders",
-      href: "/account/orders",
+      subHref: "/account/orders",
       icon: ShoppingBag,
       requiresAuth: true,
     },
     {
       title: "Log in",
-      href: "/account/login",
+      subHref: "/account/login",
       icon: LogIn,
       requiresAuth: false,
     },
     {
       title: "Log out",
-      href: "/account/login",
+      subHref: "/account/login",
       icon: LogOut,
       requiresAuth: true,
     },
