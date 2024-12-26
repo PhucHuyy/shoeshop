@@ -87,35 +87,35 @@ export const headerMenu = [
     subMenu: [
       {
         title: "NIKE",
-        subHref: "/collections/nike-thuong-hieu",
+        subHref: "/search?name=NIKE&page=0&limit=12",
       },
       {
         title: "ADIDAS",
-        subHref: "/collections/adidas-thuong-hieu",
+        subHref: "/search?name=ADIDAS&page=0&limit=12",
       },
       {
         title: "PUMA",
-        subHref: "/collections/puma-thuong-hieu",
+        subHref: "/search?name=PUMA&page=0&limit=30",
       },
       {
         title: "MIZUNO",
-        subHref: "/collections/mizuno-thuong-hieu",
+        subHref: "/search?name=MIZUNO&page=0&limit=30",
       },
       {
         title: "JOMA",
-        subHref: "/collections/joma-thuong-hieu",
+        subHref: "/search?name=JOMA&page=0&limit=30",
       },
       {
         title: "ZOCKER",
-        subHref: "/collections/athleta-thuong-hieu",
+        subHref: "/search?name=ZOCKER&page=0&limit=30",
       },
       {
         title: "KAMITO",
-        subHref: "/collections/kamito-thuong-hieu",
+        subHref: "/search?name=KAMITO&page=0&limit=30",
       },
       {
         title: "ASICS",
-        subHref: "/collections/asics-thuong-hieu",
+        subHref: "/search?name=ASICS&page=0&limit=30",
       },
     ],
   },
