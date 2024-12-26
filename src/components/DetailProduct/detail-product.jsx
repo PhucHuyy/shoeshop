@@ -4,7 +4,6 @@ import { Button } from "../ui/button";
 import toast from "react-hot-toast";
 import { useShoeContext } from "@/context/ShoeContext";
 import { useNavigate } from "react-router-dom";
-import CarouselDetailProduct from "./carousel-detail-product";
 
 const DetailProductInfo = ({ productData }) => {
   const navigate = useNavigate();
