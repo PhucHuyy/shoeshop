@@ -67,8 +67,12 @@ const HeaderActions = () => {
     // Tạo form data để gửi file
     const formData = new FormData();
     formData.append("image", file);
+    let toastID; // Khai báo ngoài để quản lý toast
 
     try {
+      // Hiển thị toast loading và lưu ID
+      toastID = toast.loading("Đang thực hiện tìm kiếm, vui lòng chờ ...");
+
       // Gửi request POST đến server
       const response = await axios.post(
         "http://localhost:3000/search",
@@ -80,17 +84,23 @@ const HeaderActions = () => {
         }
       );
 
-      // Hiển thị kết quả từ server
+      // Nếu thành công, xóa toast loading và hiển thị toast success
       if (response.status === 200) {
+        toast.dismiss(toastID); // Xóa toast loading
         const encoded = encodeURIComponent(response.data.result);
         navigate(`/search?name=${encoded}&page=0&limit=12`);
-
-        // toast.success("Kết quả: " + response.data.result);
-        // console.log("Response from server:", response.data);
+        toast.success("Tìm kiếm thành công!", {
+          autoClose: 3000, // Tự động đóng sau 3 giây
+        });
       }
-    } catch {
-      // Xử lý lỗi nếu có
-      toast.error("Xảy ra lỗi trong quá trình tải file!");
+    } catch (error) {
+      // Nếu có lỗi, xóa toast loading và hiển thị toast error
+      if (toastID) {
+        toast.dismiss(toastID); // Xóa toast loading
+      }
+      toast.error("Xảy ra lỗi trong quá trình tải file!", {
+        autoClose: 3000, // Tự động đóng sau 3 giây
+      });
     }
   };
 

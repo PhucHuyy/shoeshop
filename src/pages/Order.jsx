@@ -4,13 +4,16 @@ import toast from "react-hot-toast";
 
 import OrderList from "@/components/Order/order-list";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import { useShoeContext } from "@/context/ShoeContext";
 
 const Order = () => {
   const [params] = useSearchParams();
   const { code } = Object.fromEntries(params);
 
   const [orderList, setOrderList] = useState([]);
+  const { userInfo } = useShoeContext();
+  console.log(userInfo);
 
   useEffect(() => {
     const handleToast = () => {
@@ -40,11 +43,12 @@ const Order = () => {
 
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:8080/orders", {
+        const res = await axios.get(`http://localhost:8080/orders`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
+
         setOrderList(res.data.payload);
       } catch {
         toast.error("Lỗi khi lấy dữ liệu");

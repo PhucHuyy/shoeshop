@@ -17,6 +17,7 @@ const CartItem = (props) => {
         {
           product_id: productData.product_id.id,
           size: productData.size,
+          color: productData.color,
           quantity: 1,
         },
         {
@@ -45,6 +46,7 @@ const CartItem = (props) => {
         {
           product_id: productData.product_id.id,
           size: productData.size,
+          color: productData.color,
           quantity: -1,
         },
         {
