@@ -49,11 +49,15 @@ const Order = () => {
           },
         });
 
-        setOrderList(res.data.payload);
+        // Sắp xếp đơn hàng theo id giảm dần
+        const sortedOrders = res.data.payload.sort((a, b) => b.id - a.id);
+
+        setOrderList(sortedOrders);
       } catch {
         toast.error("Lỗi khi lấy dữ liệu");
       }
     };
+
     handleToast();
     fetchData();
   }, []);
