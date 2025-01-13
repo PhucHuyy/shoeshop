@@ -24,7 +24,7 @@ const ShoppingCart = () => {
       setProductData(res.data);
       setLoading(false);
     } catch {
-      toast.error("Lỗi khi lấy dữ liệu sản phẩm");
+      toast.error("Hãy đăng nhập để xem giỏ hàng");
       setLoading(false);
     }
   };

@@ -75,7 +75,8 @@ const DetailProductInfo = ({ productData }) => {
     } catch (error) {
       console.log(error);
 
-      toast.error("Xảy ra lỗi, thử lại!!!");
+      toast.error("Thực hiện đăng nhập để thêm vào giỏ hàng");
+      navigate("/account/login");
     } finally {
       setLoading(false);
     }

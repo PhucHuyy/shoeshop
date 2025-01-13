@@ -17,6 +17,7 @@ const statusMenu = {
   delivering: "Đang vận chuyển",
   shipped: "Giao thành công",
   canceled: "Đã huỷ",
+  awaiting: "Chờ vận chuyển",
 };
 
 const OrderDetailDialog = ({ children, data }) => {
